@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PlayMath-SPA"
+    }
+  },
+  "defaultProject": "PlayMath-SPA",
+  "cli": {
+    "analytics": "ea12b44a-3913-4f6a-a21b-b81d73b0761a"
+  }
 }
