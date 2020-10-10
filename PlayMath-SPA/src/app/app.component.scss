@@ -1,0 +1,6 @@
+@import '../assets/scss/config';
+
+div{
+    background-color: red;
+    @include main-margin;
+}

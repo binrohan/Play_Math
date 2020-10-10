@@ -1,0 +1,46 @@
+@import '../../../assets/scss/config';
+
+header{
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: $secondary-color;
+}
+.nav{
+    margin: 0 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__text-logo{
+        @include a-link;
+
+        &:hover{
+            color: $primary-color;
+        }
+    }
+
+    &__links{
+        overflow: hidden;
+        list-style-type: none;
+
+        @include flex-center-all;
+        flex-flow: row wrap;
+
+        &-link{
+            display: inline-block;
+            font-size: 1rem;
+            text-transform: uppercase;
+            padding: 1.5rem 1rem;
+            font-weight: 400;
+            @include a-link;
+
+            &:hover{
+                color: $secondary-color;
+                background: $primary-color;
+            }
+        }
+    }
+}

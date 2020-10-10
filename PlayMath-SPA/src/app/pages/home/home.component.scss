@@ -1,0 +1,15 @@
+@import '../../../assets/scss/config';
+
+.home{
+    @include main-margin;
+    
+    max-width: 1884px;
+
+    padding-top: 50px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 256px);
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}

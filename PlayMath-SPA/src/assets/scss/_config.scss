@@ -1,0 +1,52 @@
+// Variables
+// Light Theme Colors
+$primary-color: #fafafa;
+$secondary-color: #e91e63;
+$text-color: #000000de;
+
+// Bg-Buttons
+$bg-color: #0f2027;
+$hover-bg-color: #1b3946;
+
+// Dark Theme Colors
+$primary-color: #fafafa;
+$secondary-color: #e91e63;
+$text-color: #000000de;
+
+$primary-fonts: 'Lato', sans-serif;
+$secondary-fonts: 'Lato', sans-serif;
+
+
+
+// Mixins
+@mixin flex-center-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin  transition-ease {
+    transition: all 0.5s ease-in-out;
+}
+
+@mixin  a-link {
+
+    @include transition-ease;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+@mixin  main-margin {
+    margin: 80px 20px 0px 20px;
+}
+
+@mixin kill-button{
+    border: none;
+    outline: none;
+}
+// Functions
+
+
+// Maps
