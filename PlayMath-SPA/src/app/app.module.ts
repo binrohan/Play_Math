@@ -8,6 +8,8 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { from } from 'rxjs';
 import { BgButtonComponent } from './assets/bg-button/bg-button.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FactorizeComponent } from './pages/factorize/factorize.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import { HomeComponent } from './pages/home/home.component';
     NavbarComponent,
     BgButtonComponent,
     LandingComponent,
-    HomeComponent
+    HomeComponent,
+    FactorizeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

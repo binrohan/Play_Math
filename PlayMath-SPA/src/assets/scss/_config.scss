@@ -3,6 +3,7 @@
 $primary-color: #fafafa;
 $secondary-color: #e91e63;
 $text-color: #000000de;
+$equaltion-color: black;
 
 // Bg-Buttons
 $bg-color: #0f2027;
@@ -14,7 +15,7 @@ $secondary-color: #e91e63;
 $text-color: #000000de;
 
 $primary-fonts: 'Lato', sans-serif;
-$secondary-fonts: 'Lato', sans-serif;
+$secondary-fonts: 'Charm', cursive;
 
 
 
@@ -45,6 +46,35 @@ $secondary-fonts: 'Lato', sans-serif;
 @mixin kill-button{
     border: none;
     outline: none;
+}
+
+@mixin equation($font-size: 2rem) {
+    font-family: $secondary-fonts;
+    color: $equaltion-color;
+    font-size: $font-size;
+}
+
+@mixin solve{
+    @include a-link;
+
+    height: 38px;
+    padding: 0 20px;
+    margin: 0 20px;
+
+    border: 1px solid transparent;
+    border-radius: 3px;
+
+    //font-family: $primary-fonts;
+    color: $primary-color;
+
+    font-weight: 700;
+    background: $secondary-color;
+
+    &:hover{
+        background: $primary-color;
+        color: $secondary-color;
+        border: 1px solid $secondary-color;
+    }
 }
 // Functions
 

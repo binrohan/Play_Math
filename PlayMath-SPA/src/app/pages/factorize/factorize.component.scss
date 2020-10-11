@@ -1,0 +1,48 @@
+@import "../../../assets/scss/config";
+
+.factorize {
+  @include main-margin;
+
+  &__title {
+    font-size: 2rem;
+    text-decoration: underline;
+    margin-bottom: 20px;
+  }
+
+  &__desc {
+    margin-bottom: 20px;
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    &-equation {
+      @include equation;
+
+      margin-left: 5px;
+      list-style-type: none;
+    }
+  }
+
+  &__inputs {
+      @include equation(20px);
+
+    &-field{
+        @include equation(20px);
+
+        height: 38px;
+        margin-bottom: 20px;
+        padding: 0 10px;
+        border-radius: 3px;
+        border: 1px solid $secondary-color;
+    }
+
+    &-submit{
+        @include solve;
+
+        display: block;
+        margin: 0;
+        padding: 5px 25px;
+    }
+  }
+}
