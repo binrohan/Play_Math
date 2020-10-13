@@ -10,6 +10,8 @@ import { BgButtonComponent } from './assets/bg-button/bg-button.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FactorizeComponent } from './pages/factorize/factorize.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

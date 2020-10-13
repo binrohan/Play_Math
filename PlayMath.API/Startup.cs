@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using PlayMath.API.MathEngine;
 
 namespace PlayMath.API
 {
@@ -26,6 +27,8 @@ namespace PlayMath.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IPreAlgebra, PreAlgebra>();
+            services.AddScoped<IMaths, Maths>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

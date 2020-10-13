@@ -10,9 +10,9 @@ export class FactorizeComponent implements OnInit {
   isSolveClicked = false;
   equation: string;
   factorizeModel = {
-    a: 0,
-    b: 0,
-    c: 0
+    a: 1,
+    b: 7,
+    c: 12
   };
 
   constructor() { }
@@ -21,11 +21,8 @@ export class FactorizeComponent implements OnInit {
   }
 
   solve(){
-    console.log('solved clicked');
     this.isSolveClicked = true;
-    console.log(this.isSolveClicked);
-    this.equation = this.factorizeModel.a.toString();
-    console.log(this.equation);
+    this.equation = this.factorizeModel.a.toString() + this.factorizeModel.b.toString() + this.factorizeModel.c.toString();
   }
 
 }

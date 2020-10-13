@@ -8,8 +8,8 @@
   </div>
   <form class="factorize__inputs">
     <input class="factorize__inputs-field" type="number" id="a"name="a" [(ngModel)]="factorizeModel.a"/> x<sup>2</sup> +
-    <input class="factorize__inputs-field" type="number" id="b"name="b"/> x +
-    <input class="factorize__inputs-field" type="number" id="c"name="c"/>
+    <input class="factorize__inputs-field" type="number" id="b"name="b" [(ngModel)]="factorizeModel.b"/> x +
+    <input class="factorize__inputs-field" type="number" id="c"name="c" [(ngModel)]="factorizeModel.c"/>
 
     <input class="factorize__inputs-submit" type="submit" (click)="solve()" value="Solve" />
   </form>
