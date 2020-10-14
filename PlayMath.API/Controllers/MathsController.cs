@@ -14,7 +14,7 @@ namespace PlayMath.API.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post (Factorize factorize) {
+        public List<TrinomialSolutionDto> Post (Factorize factorize) {
 
             var equation = factorize.Trinomial;
             // input: Ax^2 + Bx + C: x^2 + 7x + 12
@@ -32,9 +32,9 @@ namespace PlayMath.API.Controllers {
             // x(Ax + a) + x(Ax + a) : x(x + 4) + 3(x + 4)
             // (Ax + a)(x + x) : (x + 4)(x + 3)
 
-            _maths.FactorTrinomial(factorize.Trinomial, factorize.A, factorize.B, factorize.C);
+            var solution = _maths.FactorTrinomial(factorize.Trinomial, factorize.A, factorize.B, factorize.C);
 
-            return Ok (equation);
+            return (solution);
         }
     }
 }
