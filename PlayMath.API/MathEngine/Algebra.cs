@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using PlayMath.API.Dtos;
 using PlayMath.API.MathHelperClasses;
 
 namespace PlayMath.API.MathEngine
 {
-    public class Maths : IMaths
+    public class Algebra : IAlgebra
     {
-        public List<TrinomialSolutionDto> FactorTrinomial(string equation,int a = 1, int b = 1, int c = 0)
+        public List<TrinomialSolutionDto> Trinomial(string equation,int a = 1, int b = 1, int c = 0)
         {
             List<TrinomialSolutionDto> solution =  new List<TrinomialSolutionDto>();
 

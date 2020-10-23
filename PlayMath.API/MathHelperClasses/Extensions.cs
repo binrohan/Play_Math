@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace PlayMath.API.MathHelperClasses
@@ -7,6 +8,8 @@ namespace PlayMath.API.MathHelperClasses
         public static List<int> PrimeFactors(this int n)
         {
             var factors =  new List<int>();
+
+            n = Math.Abs(n);
 
             for(int i = 1; i <= n; ++i)
             {

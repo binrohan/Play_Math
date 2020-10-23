@@ -1,0 +1,51 @@
+<section class="factorize">
+  <h2 class="factorize__title">Factorize an Equation</h2>
+  <div class="factorize__desc">
+    <p>Accept equations format</p>
+    <ul class="factorize__desc-equation">
+      <li>ax<sup>2</sup> + bx + c</li>
+    </ul>
+  </div>
+  <form class="factorize__inputs">
+    <input
+      class="factorize__inputs-field"
+      type="number"
+      id="a"
+      name="a"
+      [(ngModel)]="model.a"
+    />
+    x<sup>2</sup> +
+    <input
+      class="factorize__inputs-field"
+      type="number"
+      id="b"
+      name="b"
+      [(ngModel)]="model.b"
+    />
+    x +
+    <input
+      class="factorize__inputs-field"
+      type="number"
+      id="c"
+      name="c"
+      [(ngModel)]="model.c"
+    />
+
+    <input
+      class="factorize__inputs-submit"
+      type="submit"
+      (click)="solve()"
+      value="Solve"
+    />
+  </form>
+  <p *ngIf="isSolveClicked">
+    Your equation is :
+    <span class="factorize__equation">
+      {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0">+</span>
+      {{ model.b }}x <span *ngIf="model.b > 0">+</span>{{ model.c }}</span
+    >
+  </p>
+</section>
+<section class="solved" *ngIf="isSolveClicked">
+  <p class="solved__line" *ngFor="let s of solved">{{s.solutionLine}}</p>
+</section>

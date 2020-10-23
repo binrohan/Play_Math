@@ -6,6 +6,6 @@ namespace PlayMath.API.Dtos
         public int B { get; set; }
         public int C { get; set; }
 
-        public string Trinomial { get; set; }
+        public string Equation { get; set; }
     }
 }

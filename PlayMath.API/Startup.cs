@@ -27,8 +27,9 @@ namespace PlayMath.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddScoped<IPreAlgebra, PreAlgebra>();
-            services.AddScoped<IMaths, Maths>();
+            services.AddScoped<IAlgebra, Algebra>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +39,9 @@ namespace PlayMath.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // For security Cors policy must change
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

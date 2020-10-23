@@ -8,10 +8,11 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { from } from 'rxjs';
 import { BgButtonComponent } from './assets/bg-button/bg-button.component';
 import { HomeComponent } from './pages/home/home.component';
-import { FactorizeComponent } from './pages/factorize/factorize.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { HttpClientModule } from '@angular/common/http';
+import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.component';
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import { appRoutes } from './routes';
     BgButtonComponent,
     LandingComponent,
     HomeComponent,
-    FactorizeComponent
+    TrinomialComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

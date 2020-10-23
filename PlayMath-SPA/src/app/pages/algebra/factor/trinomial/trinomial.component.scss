@@ -1,4 +1,4 @@
-@import "../../../assets/scss/config";
+@import "../../../../../assets/scss/config";
 
 .factorize {
   @include main-margin;
@@ -45,4 +45,12 @@
         padding: 5px 25px;
     }
   }
+
+  &__equation{
+    @include equation(2rem);
+  }
+}
+
+.solved{
+  @include solved;
 }
