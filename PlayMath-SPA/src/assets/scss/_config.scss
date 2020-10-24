@@ -94,6 +94,18 @@ $secondary-fonts: 'Charm', cursive;
         margin: 5px 0;
     }
 }
+
+@mixin math-error {
+    @include second-margin;
+
+    padding: 10px 10px 10px 20px ;
+    border-left: 5px solid $secondary-color;
+    background-color: #fcf3f3;
+
+    &__line{
+        margin: 5px 0;
+    }
+}
 // Functions
 
 

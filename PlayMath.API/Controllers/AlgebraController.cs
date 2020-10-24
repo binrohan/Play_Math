@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using PlayMath.API.Dtos;
+using PlayMath.API.Dtos.AlgebraDtos;
 using PlayMath.API.MathEngine;
 
 namespace PlayMath.API.Controllers {
@@ -13,7 +14,7 @@ namespace PlayMath.API.Controllers {
         }
 
         [HttpPost ("trinomial")]
-        public List<TrinomialSolutionDto> Post (Factorize factorize) {
+        public List<TrinomialSolutionDto> Trinomial (Trinomial trinomial) {
 
             // input: Ax^2 + Bx + C: x^2 + 7x + 12
             // steps:
@@ -30,9 +31,16 @@ namespace PlayMath.API.Controllers {
             // x(Ax + a) + x(Ax + a) : x(x + 4) + 3(x + 4)
             // (Ax + a)(x + x) : (x + 4)(x + 3)
 
-            var solution = _algebra.Trinomial (factorize.Equation, factorize.A, factorize.B, factorize.C);
+            var solution = _algebra.Trinomial (trinomial.Equation, trinomial.A, trinomial.B, trinomial.C);
 
             return (solution);
+        }
+
+        [HttpPost("quadratic")]
+
+        public List<QuadraticSolutionDto> Quadratic (Quadratic quadratic){
+            
+            return null;
         }
     }
 }

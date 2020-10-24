@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Trinomial } from 'src/app/_models/_math.models/trinomial';
+import { Quadratic } from 'src/app/_models/_math.models/quadratic';
 import { AlgebraService } from 'src/app/_services/algebra.service';
 
 @Component({
-  selector: 'app-trinomial',
-  templateUrl: './trinomial.component.html',
-  styleUrls: ['./trinomial.component.scss']
+  selector: 'app-quadratic',
+  templateUrl: './quadratic.component.html',
+  styleUrls: ['./quadratic.component.scss']
 })
-export class TrinomialComponent implements OnInit {
+export class QuadraticComponent implements OnInit {
 
   isSolveClicked = false;
   solved: any;
@@ -15,9 +15,9 @@ export class TrinomialComponent implements OnInit {
     a: 1,
     b: 7,
     c: 12,
-    equation: 'xxxxx',
+    d: 0
   };
-  trinomial: Trinomial;
+  quadratic: Quadratic;
   success = false;
 
   constructor(private algebraService: AlgebraService) { }
@@ -29,10 +29,9 @@ export class TrinomialComponent implements OnInit {
     console.log(this.model);
     this.isSolveClicked = true;
 
-    this.trinomial = Object.assign({}, this.model);
-    this.algebraService.getTrinomial(this.trinomial).subscribe(
+    this.quadratic = Object.assign({}, this.model);
+    this.algebraService.getQuadratic(this.quadratic).subscribe(
       (data) => {
-        console.log(data);
         this.solved = data;
         this.success = true;
       },

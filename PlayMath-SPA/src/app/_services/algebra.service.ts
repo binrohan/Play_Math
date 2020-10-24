@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Quadratic } from '../_models/_math.models/quadratic';
 import { Trinomial } from '../_models/_math.models/trinomial';
 
 @Injectable({
@@ -11,7 +12,11 @@ export class AlgebraService {
 
   constructor(private http: HttpClient) {}
 
-  getMaths(trinomial: Trinomial): any {
+  getTrinomial(trinomial: Trinomial): any {
     return this.http.post(this.baseUrl + 'trinomial', trinomial);
+  }
+
+  getQuadratic(quadratic: Quadratic): any {
+    return this.http.post(this.baseUrl + 'trinomial', quadratic);
   }
 }

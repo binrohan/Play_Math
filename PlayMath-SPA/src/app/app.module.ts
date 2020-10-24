@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.component';
+import { QuadraticComponent } from './pages/algebra/quadratic/quadratic.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.c
     BgButtonComponent,
     LandingComponent,
     HomeComponent,
-    TrinomialComponent
+    TrinomialComponent,
+    QuadraticComponent
   ],
   imports: [
     BrowserModule,

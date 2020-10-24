@@ -1,10 +1,10 @@
 <section class="factorize">
-  <h2 class="factorize__title">Trinomial Equation</h2>
+  <h2 class="factorize__title">Quadratic Equation</h2>
   <div class="factorize__desc">
-    <p>Factorize a trinomial equation.</p>
-    <p>Equation format:</p>
+    <p>Solve a quadratic equation for variable x and y.</p>
+      <p>Equation format:</p>
     <ul class="factorize__desc-equation">
-      <li>ax<sup>2</sup> + bx + c</li>
+      <li>ax<sup>2</sup> + bx + c = d</li>
     </ul>
   </div>
   <form class="factorize__inputs">
@@ -31,6 +31,14 @@
       name="c"
       [(ngModel)]="model.c"
     />
+    =
+    <input
+      class="factorize__inputs-field"
+      type="number"
+      id="d"
+      name="d"
+      [(ngModel)]="model.d"
+    />
 
     <input
       class="factorize__inputs-submit"
@@ -42,8 +50,8 @@
   <p *ngIf="isSolveClicked">
     Your equation is :
     <span class="factorize__equation">
-      {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0">+</span>
-      {{ model.b }}x <span *ngIf="model.b > 0">+</span>{{ model.c }}</span
+      {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0"> + </span>
+      {{ model.b }}x <span *ngIf="model.b > 0"> + </span>{{ model.c }} = {{model.d}}</span
     >
   </p>
 </section>

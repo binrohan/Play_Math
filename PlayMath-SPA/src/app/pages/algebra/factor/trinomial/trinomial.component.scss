@@ -35,6 +35,7 @@
         padding: 0 10px;
         border-radius: 3px;
         border: 1px solid $secondary-color;
+        text-align: right;
     }
 
     &-submit{
@@ -53,4 +54,8 @@
 
 .solved{
   @include solved;
+}
+
+.math-error{
+  @include math-error;
 }

@@ -1,6 +1,6 @@
 namespace PlayMath.API.Dtos
 {
-    public class Factorize
+    public class Trinomial
     {
         public int A { get; set; }
         public int B { get; set; }
