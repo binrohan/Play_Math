@@ -40,7 +40,9 @@ namespace PlayMath.API.Controllers {
 
         public List<QuadraticSolutionDto> Quadratic (Quadratic quadratic){
             
-            return null;
+            var solution = _algebra.Qudratic (quadratic.A, quadratic.B, quadratic.C, quadratic.D);
+
+            return (solution);
         }
     }
 }

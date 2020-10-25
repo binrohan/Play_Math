@@ -17,6 +17,6 @@ export class AlgebraService {
   }
 
   getQuadratic(quadratic: Quadratic): any {
-    return this.http.post(this.baseUrl + 'trinomial', quadratic);
+    return this.http.post(this.baseUrl + 'quadratic', quadratic);
   }
 }

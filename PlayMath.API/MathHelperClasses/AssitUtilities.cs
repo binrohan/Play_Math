@@ -66,5 +66,47 @@ namespace PlayMath.API.MathHelperClasses
             else
                 return "[PlayMath_Prototype/MathAssistUtility/PlusGenerator]";
         }
+
+        public static string Fraction(int n, int d)
+        {
+            /*
+            CASES:
+            -5 / -2 = 5/2
+            -5 / 2 = -5 / 2
+            5 / -2 = 5 / -2
+            5 / 2 = 5/2
+            -5/-1 = 5
+            -5 / 1 = -5
+            5 / -1 = -5
+            5 / 1 = 5
+            */
+            if(d == 1)
+            {
+                return n.ToString();
+            }
+            else if(d == -1)
+            {
+                return (-1 * n).ToString();
+            }
+            else if(n < 0 && d < 0)
+            {
+                return ((-1 * n) + "/" + (-1 * d)).ToString();
+            }
+
+            return (n + "/" + d).ToString();
+        }
+
+        public static string Katakati(int n, int d)
+        {
+            int x = MathUtilities.GCD(n, d);
+            if(x != -1)
+            {
+                n /= x;
+                d /= x;
+            }
+ 
+            return Fraction(n, d);
+        }
     }
 }
+
