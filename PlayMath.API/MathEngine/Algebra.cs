@@ -115,9 +115,9 @@ namespace PlayMath.API.MathEngine
             });
 
 
-            // if(MathUtilities.GCD(nominatorA, denominatorA) == 1 || MathUtilities.GCD(nominatorB, denominatorB) == 1
-            //    || MathUtilities.GCD(nominatorA, denominatorA) == -1 || MathUtilities.GCD(nominatorB, denominatorB) == -1)
-            //     return solution;
+            if(MathUtilities.GCD(nominatorA, denominatorA) == 1 || MathUtilities.GCD(nominatorB, denominatorB) == 1
+               || MathUtilities.GCD(nominatorA, denominatorA) == -1 || MathUtilities.GCD(nominatorB, denominatorB) == -1)
+                return solution;
             
             resultA = AssitUtilities.Katakati(nominatorA, denominatorA);
             resultB = AssitUtilities.Katakati(nominatorB, denominatorB);
@@ -169,8 +169,8 @@ namespace PlayMath.API.MathEngine
             {
                 solution.Add(new TrinomialSolutionDto()
                 {
-                    SolutionLine = string.Empty,
-                    Description = "There is no other factor but itselt!"
+                    SolutionLine = "There is no other factor but itselt!",
+                    Description = "xxxxxxxxxxxxxx"
                 });
 
                 return solution;
