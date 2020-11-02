@@ -1,6 +1,6 @@
 // Variables
 // Light Theme Colors
-$primary-color: #fafafa;
+$primary-color: #f6fafd;
 $secondary-color: #e91e63;
 $text-color: #000000de;
 $equaltion-color: black;
@@ -15,98 +15,112 @@ $primary-color: #fafafa;
 $secondary-color: #e91e63;
 $text-color: #000000de;
 
-$primary-fonts: 'Lato', sans-serif;
-$secondary-fonts: 'Charm', cursive;
-
-
+$primary-fonts: "Lato", sans-serif;
+$secondary-fonts: "Charm", cursive;
 
 // Mixins
 @mixin flex-center-all {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@mixin  transition-ease {
-    transition: all 0.5s ease-in-out;
+@mixin transition-ease {
+  transition: all 0.5s ease-in-out;
 }
 
-@mixin  a-link {
+@mixin a-link {
+  @include transition-ease;
 
-    @include transition-ease;
-
-    &:hover{
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-@mixin  main-margin {
-    margin: 80px 20px 0px 20px;
+@mixin main-margin {
+  margin: 80px 20px 0px 20px;
 }
 @mixin second-margin {
-    margin: 20px;
+  margin: 20px;
 }
 
-@mixin kill-button{
-    border: none;
-    outline: none;
+@mixin kill-button {
+  border: none;
+  outline: none;
+}
+
+@mixin kill-a {
+  color: $text-color;
+  text-decoration: none;
+}
+
+@mixin kill-number-spinner {
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 
 @mixin equation($font-size: 2rem) {
-    font-family: $secondary-fonts;
-    color: $equaltion-color;
-    font-size: $font-size;
+  font-family: $secondary-fonts;
+  color: $equaltion-color;
+  font-size: $font-size;
 }
 
-@mixin solve{
-    @include a-link;
+@mixin solve {
+  @include a-link;
 
-    height: 38px;
-    padding: 0 20px;
-    margin: 0 20px;
+  height: 38px;
+  padding: 5px 25px;
+  margin: 0 0px;
 
-    border: 1px solid transparent;
-    border-radius: 3px;
+  border: 1px solid transparent;
+  border-radius: 3px;
 
-    //font-family: $primary-fonts;
-    color: $primary-color;
+  //font-family: $primary-fonts;
+  color: $primary-color;
 
-    font-weight: 700;
-    background: $secondary-color;
+  font-weight: 700;
+  background: $secondary-color;
 
-    &:hover{
-        background: $primary-color;
-        color: $secondary-color;
-        border: 1px solid $secondary-color;
-    }
+  &:hover {
+    background: $primary-color;
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
+  }
 }
 
 @mixin solved {
-    @include second-margin;
+  @include second-margin;
 
-    padding: 10px 10px 10px 20px ;
-    border-left: 5px solid $feature-color;
-    background-color: whitesmoke;
+  padding: 10px 10px 10px 20px;
+  border-left: 5px solid $feature-color;
+  background-color: whitesmoke;
 
-    &__line{
-        @include equation(2rem);
+  &__line {
+    @include equation(2rem);
 
-        margin: 5px 0;
-    }
+    margin: 5px 0;
+  }
 }
 
 @mixin math-error {
-    @include second-margin;
+  @include second-margin;
 
-    padding: 10px 10px 10px 20px ;
-    border-left: 5px solid $secondary-color;
-    background-color: #fcf3f3;
+  padding: 10px 10px 10px 20px;
+  border-left: 5px solid $secondary-color;
+  background-color: #fcf3f3;
 
-    &__line{
-        margin: 5px 0;
-    }
+  &__line {
+    margin: 5px 0;
+  }
 }
 // Functions
-
 
 // Maps

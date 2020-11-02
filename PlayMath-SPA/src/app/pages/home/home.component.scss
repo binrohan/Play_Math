@@ -1,15 +1,39 @@
 @import '../../../assets/scss/config';
-
 .home{
     @include main-margin;
-    
-    max-width: 1884px;
-
-    padding-top: 50px;
 
     display: grid;
-    grid-template-columns: repeat(4, 256px);
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     justify-content: center;
-    align-items: center;
-    gap: 40px;
+    gap: 1rem;
+
+    max-width: 900px;
+    margin: 80px auto;
+
+    &__topics{
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 0 0 0 1px rgba(0,0,0,.05), 0 2px 3px 0 rgba(0,0,0,.1);
+        overflow: hidden;
+
+        p{
+            font-size: 1.5rem;
+            color: $primary-color;
+            text-align: center;
+            padding: 0.5rem;
+            margin: 0;
+        }
+
+        &-topic{
+            @include kill-a;
+
+            font: .8rem;
+            padding: 0.7rem 1rem;
+            display: block;
+
+            &:hover{
+                background: $primary-color;
+            }
+        }
+    }
 }

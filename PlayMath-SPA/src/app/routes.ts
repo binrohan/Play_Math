@@ -3,6 +3,7 @@ import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.c
 import { QuadraticComponent } from './pages/algebra/quadratic/quadratic.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ModeComponent } from './pages/preAlgebra/mode/mode.component';
 
 export const appRoutes: Routes = [
     {
@@ -13,7 +14,8 @@ export const appRoutes: Routes = [
             { path: '', component: LandingComponent},
             { path: 'home', component: HomeComponent },
             { path: 'trinomial', component: TrinomialComponent},
-            { path: 'quadratic', component: QuadraticComponent}
+            { path: 'quadratic', component: QuadraticComponent},
+            { path: 'mode', component: ModeComponent}
         ]
     }
 ];

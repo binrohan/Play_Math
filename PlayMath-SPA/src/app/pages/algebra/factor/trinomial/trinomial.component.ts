@@ -18,7 +18,7 @@ export class TrinomialComponent implements OnInit {
     equation: 'xxxxx',
   };
   trinomial: Trinomial;
-  success = false;
+  success = true;
 
   constructor(private algebraService: AlgebraService) { }
 

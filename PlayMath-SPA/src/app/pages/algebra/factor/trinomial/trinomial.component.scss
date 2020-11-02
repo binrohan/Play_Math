@@ -26,6 +26,7 @@
 
   &__inputs {
       @include equation(20px);
+      @include kill-number-spinner;
 
     &-field{
         @include equation(20px);

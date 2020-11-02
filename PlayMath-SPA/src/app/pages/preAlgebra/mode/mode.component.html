@@ -1,0 +1,36 @@
+<section class="mode">
+  <h2 class="mode__title">Mode: The Most Common Value</h2>
+  <div class="mode__desc">
+    <p>Enter number separated by commas.</p>
+  </div>
+  <form   class="mode__inputs">
+    <input
+      class="form-control mode__inputs-field"
+      type="text"
+      name="numbers"
+      id="numbers"
+      [placeholder] = "placeholder"
+      required
+      (keypress) = "checkInputChar($event)"
+      [(ngModel)]="model.numbers"
+    />
+    <input
+    class="mode__inputs-submit"
+    type="submit"
+    (click)="solve()"
+    value="Solve"
+  />
+  </form>
+  <div class="mode__examples">
+      <!-- Examples Input -->
+  </div>
+  <p class="mode__review" *ngIf="isSolveClicked">
+      Your input numbers: &nbsp; <span class="mode__review-equation">{{model.numbers}}</span> 
+  </p>
+</section>
+<section class="solved" *ngIf="isSolveClicked && success">
+    
+</section>
+<section class="math-error" *ngIf="isSolveClicked && !success">
+  <p>Something went worng!</p>
+</section>

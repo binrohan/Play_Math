@@ -1,10 +1,17 @@
-<section class="home">
-  <app-bg-button buttonName = "Trinomial" [routerLink]="['/trinomial']"></app-bg-button>
-  <app-bg-button buttonName = "Quadratic" [routerLink]="['/quadratic']"></app-bg-button>
-  <app-bg-button buttonName = "LCM"></app-bg-button>
-  <app-bg-button buttonName = "GCM"></app-bg-button>
-  <app-bg-button buttonName = "Simplification"></app-bg-button>
-  <app-bg-button buttonName = "XXX XXX XXX"></app-bg-button>
-  <app-bg-button buttonName = "XXX XXX XXX"></app-bg-button>
-  <app-bg-button buttonName = "XXX XXX XXX"></app-bg-button>
+<section>
+  <div class="home">
+    <div class="home__topics">
+      <p class="home__topics-title" style="background: #20B2C8;">Pre-Algebra</p>
+      <a class="home__topics-topic" [routerLink]="['/mode']" >Mode</a>
+      <a class="home__topics-topic" [routerLink]="['/']" >Mean</a>
+      <a class="home__topics-topic" [routerLink]="['/']" >Greatest Common Factor</a>
+      <a class="home__topics-topic" [routerLink]="['/']" >Least Common Multiple</a>
+      <a class="home__topics-topic" [routerLink]="['/']" >Prime Factorization</a>
+    </div>
+    <div class="home__topics">
+      <p  class="home__topics-tile"  style="background: #38845B;">Algebra</p>
+      <a class="home__topics-topic" [routerLink]="['/trinomial']">Trinomial</a>
+      <a class="home__topics-topic" [routerLink]="['/quadratic']">Quadratic</a>
+    </div>
+  </div>
 </section>

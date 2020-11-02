@@ -14,6 +14,7 @@ import { appRoutes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.component';
 import { QuadraticComponent } from './pages/algebra/quadratic/quadratic.component';
+import { ModeComponent } from './pages/preAlgebra/mode/mode.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { QuadraticComponent } from './pages/algebra/quadratic/quadratic.componen
     LandingComponent,
     HomeComponent,
     TrinomialComponent,
-    QuadraticComponent
+    QuadraticComponent,
+    ModeComponent
   ],
   imports: [
     BrowserModule,
