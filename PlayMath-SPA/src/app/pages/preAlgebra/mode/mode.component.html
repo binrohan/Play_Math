@@ -29,7 +29,11 @@
   </p>
 </section>
 <section class="solved" *ngIf="isSolveClicked && success">
-    
+  <div class="solved__equation"><span *ngFor="let number of solution.numbers"><span [ngClass] = "{'result':number === solution.result}">{{number}}</span></span></div>
+  <div class="solved__result">
+    <p>The Mode value is the value that appears the most number of times</p>
+    <p>Mode: {{solution.result}}</p>
+  </div>
 </section>
 <section class="math-error" *ngIf="isSolveClicked && !success">
   <p>Something went worng!</p>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Mode } from 'src/app/_models/_math.models/mode';
+import { ModeSolved } from 'src/app/_models/_math.models/mode-solved';
 import { PreAlgebraService } from 'src/app/_services/pre-algebra.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ModeComponent implements OnInit {
   success = true;
   isSolveClicked = false;
   mode: Mode;
-  solution: any = {};
+  solution: ModeSolved;
   placeholder = '99,86,87,88,111,86,103,87,94,78,77,85,86';
 
   constructor(private preAlgebraService: PreAlgebraService) { }
@@ -36,6 +37,7 @@ export class ModeComponent implements OnInit {
     this.preAlgebraService.getMode(this.mode).subscribe(
       (data) => {
         this.solution = data;
+        this.success = true;
       },
       (error) => {
         this.success = false;

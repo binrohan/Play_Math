@@ -41,12 +41,26 @@
 
 .solved{
     @include math-solved;
+    
 
-    &__lines{
-        display: block;
+    &__equation{
+        @include equation;
+    }
+
+    span{
+        margin: 0 10px 0 0;
+    }
+
+    &__result{
+        font-size: 1.5rem;
     }
 }
 
 .math-error{
     @include math-error;
+}
+
+.result{
+    color: lime;
+    text-decoration: underline;
 }

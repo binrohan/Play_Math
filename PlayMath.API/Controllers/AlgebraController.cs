@@ -4,17 +4,21 @@ using PlayMath.API.Dtos;
 using PlayMath.API.Dtos.AlgebraDtos;
 using PlayMath.API.MathEngine;
 
-namespace PlayMath.API.Controllers {
-    [Route ("api/[controller]")]
+namespace PlayMath.API.Controllers
+{
+    [Route("api/[controller]")]
     [ApiController]
-    public class AlgebraController : ControllerBase {
+    public class AlgebraController : ControllerBase
+    {
         private readonly IAlgebra _algebra;
-        public AlgebraController (IAlgebra algebra) {
+        public AlgebraController(IAlgebra algebra)
+        {
             _algebra = algebra;
         }
 
-        [HttpPost ("trinomial")]
-        public List<TrinomialSolutionDto> Trinomial (Trinomial trinomial) {
+        [HttpPost("trinomial")]
+        public List<TrinomialSolutionDto> Trinomial(Trinomial trinomial)
+        {
 
             // input: Ax^2 + Bx + C: x^2 + 7x + 12
             // steps:
@@ -31,16 +35,17 @@ namespace PlayMath.API.Controllers {
             // x(Ax + a) + x(Ax + a) : x(x + 4) + 3(x + 4)
             // (Ax + a)(x + x) : (x + 4)(x + 3)
 
-            var solution = _algebra.Trinomial (trinomial.Equation, trinomial.A, trinomial.B, trinomial.C);
+            var solution = _algebra.Trinomial(trinomial.Equation, trinomial.A, trinomial.B, trinomial.C);
 
             return (solution);
         }
 
         [HttpPost("quadratic")]
 
-        public List<QuadraticSolutionDto> Quadratic (Quadratic quadratic){
-            
-            var solution = _algebra.Qudratic (quadratic.A, quadratic.B, quadratic.C, quadratic.D);
+        public List<QuadraticSolutionDto> Quadratic(Quadratic quadratic)
+        {
+
+            var solution = _algebra.Qudratic(quadratic.A, quadratic.B, quadratic.C, quadratic.D);
 
             return (solution);
         }
