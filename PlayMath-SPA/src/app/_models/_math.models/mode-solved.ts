@@ -1,5 +1,5 @@
 // tslint:disable-next-line: no-empty-interface
 export interface ModeSolved {
-    numbers: string;
+    numbers: number[];
     result: number;
 }
