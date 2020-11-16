@@ -20,5 +20,19 @@ namespace PlayMath.API.Controllers
             var solution = _preAlgebra.Mode(mode.Numbers);
             return solution;
         }
+
+        [HttpPost("gcd")]
+        public GeneralSolution GreatestCommonDenominator(NumSteam numbers)
+        {
+            var solution = _preAlgebra.GreatestCommonDenominator(numbers.Numbers);
+
+            return solution;
+        }
+
+        [HttpPost("factor")]
+        public void PrimeFactor(int number)
+        {
+            
+        }
     }
 }

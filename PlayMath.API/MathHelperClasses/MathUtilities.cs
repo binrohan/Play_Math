@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PlayMath.API.MathHelperClasses
@@ -11,6 +12,10 @@ namespace PlayMath.API.MathHelperClasses
         }
 
         public static int GCD(int[] numbers)
+        {
+            return numbers.Aggregate(GCD);
+        }
+        public static int GCD(List<int> numbers)
         {
             return numbers.Aggregate(GCD);
         }
