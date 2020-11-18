@@ -29,10 +29,12 @@ namespace PlayMath.API.Controllers
             return solution;
         }
 
-        [HttpPost("factor")]
-        public void PrimeFactor(int number)
+        [HttpPost("factor/{number}")]
+        public PrimeFactorSolution PrimeFactor(int number)
         {
-            
+            var solution =  _preAlgebra.PrimeFactor(number);
+
+            return solution;
         }
     }
 }

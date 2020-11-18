@@ -25,7 +25,7 @@ namespace PlayMath.API.MathEngine
 
             d = a * c;
 
-            var factors = d.PrimeFactors();  
+            var factors = d.Divisors();  
 
             var pairFactor = AssitUtilities.MidTermFactorPair(factors, b, d);
 
@@ -149,7 +149,7 @@ namespace PlayMath.API.MathEngine
             // int c;
 
             int d = a * c;
-            var factors = d.PrimeFactors();
+            var factors = d.Divisors();
 
             var pairFactor = AssitUtilities.MidTermFactorPair(factors, b, d);
 

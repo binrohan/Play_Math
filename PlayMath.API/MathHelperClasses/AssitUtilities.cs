@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PlayMath.API.models.MathModel;
 
 namespace PlayMath.API.MathHelperClasses
 {
@@ -106,6 +107,29 @@ namespace PlayMath.API.MathHelperClasses
             }
  
             return Fraction(n, d);
+        }
+
+        public static List<PrimeCounts> PrimeCounts(this List<int> factors)
+        {
+            List<PrimeCounts> primeCounts = new List<PrimeCounts>();
+            List<int> prime = new List<int>();    
+        
+            Dictionary<int, int> counts = new Dictionary<int, int>();
+                
+            foreach (int element in factors)                
+            {
+                if (counts.ContainsKey(element))
+                    counts[element]++;
+                else
+                    counts.Add(element, 1);
+            }  
+
+            foreach (KeyValuePair<int, int> item in counts)
+            {
+                primeCounts.Add( new PrimeCounts() { Primes = item.Key, Counts = item.Value });
+            }
+
+            return primeCounts;       
         }
     }
 }

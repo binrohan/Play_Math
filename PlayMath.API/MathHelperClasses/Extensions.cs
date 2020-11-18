@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PlayMath.API.Dtos.PreAlgebraDtos;
 
 namespace PlayMath.API.MathHelperClasses
 {
     public static class Extensions
     {
-        public static List<int> PrimeFactors(this int n)
+        public static List<int> Divisors(this int n)
         {
             var factors =  new List<int>();
 
@@ -23,7 +24,7 @@ namespace PlayMath.API.MathHelperClasses
             return factors;
         }
 
-         public static int GetMode(this IEnumerable<int> list)
+        public static int GetMode(this IEnumerable<int> list)
         {
             int mode = default(int);
             
@@ -53,15 +54,19 @@ namespace PlayMath.API.MathHelperClasses
             return mode;
         }
 
-        public static List<int> Divisors(this int n)
+        public static List<int> PrimeFactors(this int number)
         {
-            List<int> divisors = new List<int>();
+            var primes = new List<int>();
 
-            for (int i = 1; i <= n; i++) 
-                if (n % i == 0) 
-                    divisors.Add(i);
-           
-           return divisors;
+            for(int div = 2; div<=number; div++){
+
+                while(number%div==0){
+
+                    primes.Add(div);
+                    number = number / div;
+                }
+            }
+            return primes;
         }
     }
 }

@@ -42,5 +42,16 @@ namespace PlayMath.API.MathEngine
 
             return solution;
         }
+
+        public PrimeFactorSolution PrimeFactor(int number)
+        {
+            PrimeFactorSolution solution = new PrimeFactorSolution();
+            
+            solution.Factors = number.PrimeFactors();
+
+            solution.PrimeCounts = solution.Factors.PrimeCounts();
+
+            return solution;
+        }
     }
 }

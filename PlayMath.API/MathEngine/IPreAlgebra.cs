@@ -7,5 +7,7 @@ namespace PlayMath.API.MathEngine
          ModeSolution Mode(string numbers);
 
          GeneralSolution GreatestCommonDenominator(string numbers);
+
+         PrimeFactorSolution PrimeFactor(int number);
     }
 }
