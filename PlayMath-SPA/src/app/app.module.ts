@@ -14,6 +14,8 @@ import { ProfileComponent } from 'src/components/profile/profile.component';
 import { QuestionsComponent } from 'src/components/questions/questions.component';
 import { QuizComponent } from 'src/components/quiz/quiz.component';
 import { RegisterComponent } from 'src/components/register/register.component';
+import { ArticleFormComponent } from 'src/components/article-form/article-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,14 @@ import { RegisterComponent } from 'src/components/register/register.component';
     ProfileComponent,
     QuestionsComponent,
     QuizComponent,
-    RegisterComponent
+    RegisterComponent,
+    ArticleFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

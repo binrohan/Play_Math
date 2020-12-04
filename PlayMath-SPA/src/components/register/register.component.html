@@ -1,3 +1,129 @@
-<p>
-  register works!
-</p>
+<div class="container component text-center" >
+  <div class="text-center">
+    <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="register()">
+      <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+      <label for="inputEmail" class="sr-only">Name</label>
+      <input
+        type="text"
+        id="inputUsername"
+        class="form-control"
+        placeholder="Your name"
+        required
+        autofocus
+        formControlName="username"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('username').errors &&
+            registerForm.get('username').touched
+        }"
+      />
+      <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('username').touched &&
+        registerForm.get('username').hasError('required')
+      "
+    > Username required
+  </div>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input
+        type="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+        formControlName="email"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('email').errors &&
+            registerForm.get('email').touched
+        }"
+      />
+      <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('email').touched &&
+        registerForm.get('email').hasError('required')
+      "
+    > Email required
+  </div><div
+  class="invalid-feedback"
+  *ngIf="
+    registerForm.get('email').touched &&
+    registerForm.get('email').hasError('email')
+  "
+> Invalid email
+</div>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input
+        type="password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="Password"
+        required
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('password').errors &&
+            registerForm.get('password').touched
+        }"
+      />
+      <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('required') &&
+        registerForm.get('password').touched
+      "
+    >
+      Password is required
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('minlength') &&
+        registerForm.get('password').touched
+      "
+    >
+      Password must be at least 4 characters
+    </div>
+      <label for="inputPasswordConfirm" class="sr-only">Confirm password</label>
+      <input
+        type="password"
+        id="inputPasswordConfirm"
+        class="form-control"
+        placeholder="Confirm password"
+        required="true"
+        formControlName="confirmPassword"
+        [ngClass]="{
+          'is-invalid':
+            (registerForm.get('confirmPassword').errors &&
+              registerForm.get('confirmPassword').touched) ||
+            (registerForm.get('confirmPassword').touched &&
+              registerForm.hasError('mismatch'))
+        }"
+      />
+      <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('confirmPassword').hasError('required') &&
+        registerForm.get('confirmPassword').touched
+      "
+    >
+      Password is required
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.hasError('mismatch') &&
+        registerForm.get('confirmPassword').touched
+      "
+    >
+      Password must match
+    </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit"  [disabled] = "!registerForm.valid">
+        Register
+      </button>
+      <p>Have account <a [routerLink]="['/login']">Sign in</a></p>
+    </form>
+  </div>
+</div>
