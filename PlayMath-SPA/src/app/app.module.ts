@@ -1,37 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NavbarComponent } from './assets/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LandingComponent } from './pages/landing/landing.component';
 
-import { from } from 'rxjs';
-import { BgButtonComponent } from './assets/bg-button/bg-button.component';
-import { HomeComponent } from './pages/home/home.component';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { appRoutes } from './routes';
-import { HttpClientModule } from '@angular/common/http';
-import { TrinomialComponent } from './pages/algebra/factor/trinomial/trinomial.component';
-import { QuadraticComponent } from './pages/algebra/quadratic/quadratic.component';
-import { ModeComponent } from './pages/preAlgebra/mode/mode.component';
+// Base Components
+import { NavbarComponent } from 'src/components/navbar/navbar.component';
+import { ArticlesComponent } from 'src/components/articles/articles.component';
+import { HomeComponent } from 'src/components/home/home.component';
+import { LoginComponent } from 'src/components/login/login.component';
+import { MathsComponent } from 'src/components/maths/maths.component';
+import { ProfileComponent } from 'src/components/profile/profile.component';
+import { QuestionsComponent } from 'src/components/questions/questions.component';
+import { QuizComponent } from 'src/components/quiz/quiz.component';
+import { RegisterComponent } from 'src/components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BgButtonComponent,
-    LandingComponent,
+    ArticlesComponent,
     HomeComponent,
-    TrinomialComponent,
-    QuadraticComponent,
-    ModeComponent
+    LoginComponent,
+    MathsComponent,
+    ProfileComponent,
+    QuestionsComponent,
+    QuizComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

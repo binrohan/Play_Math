@@ -5,11 +5,7 @@
   "projects": {
     "PlayMath-SPA": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -28,7 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -92,7 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -127,6 +123,6 @@
   },
   "defaultProject": "PlayMath-SPA",
   "cli": {
-    "analytics": "e8d56b26-cf6d-4422-8763-5670e0c6c9ab"
+    "analytics": false
   }
 }
