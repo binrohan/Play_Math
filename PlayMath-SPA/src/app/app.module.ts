@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,12 @@ import { QuestionsComponent } from './_components/questions/questions.component'
 import { QuizComponent } from './_components/quiz/quiz.component';
 import { RegisterComponent } from './_components/register/register.component';
 
-
+// Base Services
+import { AuthService } from './_services/auth.service';
+import { UserService } from './_services/user.service';
+import { ArticleService } from './_services/article.service';
+import { QuizService } from './_services/quiz.service';
+import { QuestionService } from './_services/question.service';
 
 
 @NgModule({
@@ -39,8 +45,15 @@ import { RegisterComponent } from './_components/register/register.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    ArticleService,
+    QuizService,
+    QuestionService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
