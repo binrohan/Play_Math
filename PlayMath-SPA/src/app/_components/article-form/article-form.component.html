@@ -1,6 +1,6 @@
 <div class="container component">
   <h2>{{'Create new post' | titlecase}}</h2>
-  <form class="form-signin row mt-5" [formGroup]="articleForm" (ngSubmit)="postArticle()">
+  <form class="form-signin row mt-5" [formGroup]="articleForm" (ngSubmit)="addArticle()">
     <div class="col-md-4">
       <label for="title" class="sr-only">title</label>
       <input
@@ -44,14 +44,11 @@
             articleForm.get('category').errors &&
             articleForm.get('category').touched
         }">
-          <option selected>Choose...</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <option selected>Select</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.category}}</option>
         </select>
       </div>
       <button
-        [disabled]=""
         class="btn btn-lg btn-primary btn-block"
         type="submit"
         [disabled] = "!articleForm.valid"
@@ -60,19 +57,19 @@
       </button>
     </div>
     <div class="col-md-8">
-      <label for="write" class="sr-only">Write</label>
+      <label for="body" class="sr-only">body</label>
       <textarea
-        id="write"
+        id="body"
         class="form-control"
-        placeholder="Subtitle of your article"
-        name="subtitle"
+        placeholder="Passages"
+        name="body"
         style="height: 100%;"
-        name="write"
-        formControlName="write"
+        name="body"
+        formControlName="body"
         [ngClass]="{
           'is-invalid':
-            articleForm.get('write').errors &&
-            articleForm.get('write').touched
+            articleForm.get('body').errors &&
+            articleForm.get('body').touched
         }"
       ></textarea>
     </div>

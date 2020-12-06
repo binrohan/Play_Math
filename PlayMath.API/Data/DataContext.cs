@@ -12,7 +12,8 @@ namespace PlayMath.API.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
     
-        // public DbSet<Article> Articles { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
         // public DbSet<Quiz> Priorities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder){

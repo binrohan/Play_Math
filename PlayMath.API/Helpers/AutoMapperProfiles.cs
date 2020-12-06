@@ -11,6 +11,10 @@ namespace PlayMath.API.Helpers
             // Auth Mapper
             CreateMap<User, UserForDetailedDto>();
             CreateMap<UserForRegisterDto, User>();
+
+            // Article Mapper
+            CreateMap<ArticleToCreateDto, Article>();
+            CreateMap<ArticleCategory, CategoriesToReturnDto>();
         }
     }
 }

@@ -101,6 +101,7 @@ namespace PlayMath.API
             services.AddAutoMapper(typeof(PlayMathRepository).Assembly);
             services.AddControllers();
             services.AddCors();
+            services.AddScoped<IPlayMathRepository, PlayMathRepository>();
             services.AddScoped<IPreAlgebra, PreAlgebra>();
             services.AddScoped<IAlgebra, Algebra>();
         }
