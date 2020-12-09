@@ -30,7 +30,7 @@ export class ArticleService {
       params = params.append('pageIndex', articleParams.pageIndex);
     }
 
-    return this.http.get<Article[]>(this.baseUrl, {params});
+    return this.http.get<any>(this.baseUrl, {params});
   }
 
   getArticle(id: number) {

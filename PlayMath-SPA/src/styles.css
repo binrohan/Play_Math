@@ -8,3 +8,15 @@
 .cursor{
     cursor: pointer;
 }
+
+.kill-button{
+    outline: none;
+}
+
+.icon{
+    font-size: 35px;
+}
+
+.icon-liked{
+    color: hotpink;
+}

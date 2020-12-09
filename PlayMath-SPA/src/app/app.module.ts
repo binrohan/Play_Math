@@ -34,6 +34,7 @@ import { ArticleFormComponent } from './_components/article-form/article-form.co
 // Pipes
 import { SummaryPipe } from './_pipes/summary.pipe';
 import { NewLinePipe } from './_pipes/newLine.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { NewLinePipe } from './_pipes/newLine.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [
     AuthService,

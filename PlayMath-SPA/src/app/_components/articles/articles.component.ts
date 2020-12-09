@@ -11,13 +11,19 @@ import { ArticleService } from 'src/app/_services/article.service';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
+
   categories: Category[];
   articles: Article[];
+
+  filter = '';
+  totalPage = [];
+  pageSize = 6;
+
   articleParams: ArticleParams = {
     pageIndex: 0,
-    pageSize: 6,
+    pageSize: this.pageSize,
     filter: '',
-    categoryBy: 0
+    categoryBy: 0,
   };
 
   constructor(private articleService: ArticleService, private router: Router) {}
@@ -41,7 +47,8 @@ export class ArticlesComponent implements OnInit {
   getArticles() {
     this.articleService.getArticles(this.articleParams).subscribe(
       (data) => {
-        this.articles = data;
+        this.articles = data.articles;
+        this.pageCalc(data.length);
         console.log(this.articles);
       },
       (error) => {
@@ -58,5 +65,21 @@ export class ArticlesComponent implements OnInit {
   goToArticle(article) {
     console.log(article.id);
     this.router.navigate(['/article/' + article.id]);
+  }
+
+  search() {
+    this.articleParams.filter = this.filter;
+    this.getArticles();
+  }
+
+  pageCalc(length: number) {
+    this.totalPage = Array(Math.ceil(length / this.pageSize))
+      .fill(1)
+      .map((x, i) => i);
+  }
+
+  onPageChange(index: number){
+    this.articleParams.pageIndex = index;
+    this.getArticles();
   }
 }

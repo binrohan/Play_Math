@@ -47,7 +47,7 @@ namespace PlayMath.API.Controllers {
 
             var articles = await _repo.GetArticlesAsync(articleParams);
 
-            return Ok(articles);
+            return Ok(new {articles, articleParams.Length});
         }
 
         [HttpGet("{id}")]
