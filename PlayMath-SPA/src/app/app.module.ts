@@ -1,13 +1,14 @@
+// Node Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
 
+// Others
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // Base Components
-import { ArticleFormComponent } from './_components/article-form/article-form.component';
 import { ArticlesComponent } from './_components/articles/articles.component';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/login/login.component';
@@ -25,6 +26,15 @@ import { ArticleService } from './_services/article.service';
 import { QuizService } from './_services/quiz.service';
 import { QuestionService } from './_services/question.service';
 
+// Secondary Component
+import { ArticleComponent } from './_components/article/article.component';
+import { ArticleFormComponent } from './_components/article-form/article-form.component';
+
+
+// Pipes
+import { SummaryPipe } from './_pipes/summary.pipe';
+import { NewLinePipe } from './_pipes/newLine.pipe';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +49,9 @@ import { QuestionService } from './_services/question.service';
     QuizComponent,
     RegisterComponent,
     ArticleFormComponent,
+    ArticleComponent,
+    SummaryPipe,
+    NewLinePipe
   ],
   imports: [
     BrowserModule,

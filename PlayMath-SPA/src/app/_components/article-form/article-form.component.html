@@ -38,11 +38,11 @@
             >Category</label
           >
         </div>
-        <select class="custom-select" id="category" name="category" required formControlName='category'
+        <select class="custom-select" id="categoryId" name="categoryId" required formControlName='categoryId'
         [ngClass]="{
           'is-invalid':
-            articleForm.get('category').errors &&
-            articleForm.get('category').touched
+            articleForm.get('categoryId').errors &&
+            articleForm.get('categoryId').touched
         }">
           <option selected>Select</option>
           <option *ngFor="let category of categories" [value]="category.id">{{category.category}}</option>
@@ -75,4 +75,6 @@
     </div>
   </form>
 </div>
+
+<div [innerHTML]="bodyText"></div>
 

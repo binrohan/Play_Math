@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Article } from 'src/app/_models/Article';
 import { Category } from 'src/app/_models/Category';
 import { ArticleService } from 'src/app/_services/article.service';
 
@@ -12,7 +13,8 @@ import { ArticleService } from 'src/app/_services/article.service';
 export class ArticleFormComponent implements OnInit {
   articleForm: FormGroup;
   categories: Category[];
-  article: {};
+  article: Article;
+  bodyText: string;
 
   constructor(
     private fb: FormBuilder,
@@ -28,14 +30,18 @@ export class ArticleFormComponent implements OnInit {
   createArticleForm() {
     this.articleForm = this.fb.group({
       title: ['', Validators.required],
-      subtitle: ['', Validators.maxLength(25)],
-      category: ['', Validators.required],
+      subtitle: ['', Validators.maxLength(150)],
+      categoryId: ['', Validators.required],
       body: ['', Validators.required],
     });
   }
 
   addArticle() {
     if (this.articleForm.valid) {
+
+      this.bodyText = this.articleForm.controls.body.value;
+      this.bodyText = this.bodyText.replace('/(?:\r\n|\r|\n)/g', '<br>');
+
       this.article = Object.assign({}, this.articleForm.value);
       this.articleService.addArticle(this.article).subscribe(
         () => {

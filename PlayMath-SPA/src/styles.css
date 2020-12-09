@@ -4,3 +4,7 @@
 .component{
     margin-top: 70px;
 }
+
+.cursor{
+    cursor: pointer;
+}

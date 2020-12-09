@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayMath.API.Data;
 using PlayMath.API.Dtos;
+using PlayMath.API.Helpers;
 using PlayMath.API.Models;
 
 namespace PlayMath.API.Controllers {
@@ -25,7 +26,8 @@ namespace PlayMath.API.Controllers {
         {
 
             var newArticle = _mapper.Map<Article>(articleToCreate);
-            newArticle.Category = await _repo.GetCategory(articleToCreate.CategoryId);
+            newArticle.Category = await _repo.GetCategoryAsync(articleToCreate.CategoryId);
+
             _repo.Add(newArticle);
 
             if(await _repo.SaveAll())
@@ -37,10 +39,29 @@ namespace PlayMath.API.Controllers {
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetArticles([FromQuery]ArticleParams articleParams)
+        {
+            int pageSize = articleParams.PageSize;
+            int pageIndex = articleParams.PageIndex;
+
+            var articles = await _repo.GetArticlesAsync(articleParams);
+
+            return Ok(articles);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetArticle(int id)
+        {
+            var article = await _repo.GetArticleAsync(id);
+            
+            return Ok(article);
+        }
+
         [HttpGet("categories")]
         public async Task<IActionResult> GetCategories()
         {
-            var categoriesFromRepo = await _repo.GetCategories();
+            var categoriesFromRepo = await _repo.GetCategoriesAsync();
 
             var categoriesToReturn = _mapper.Map<IEnumerable<CategoriesToReturnDto>>(categoriesFromRepo);
 
@@ -50,7 +71,7 @@ namespace PlayMath.API.Controllers {
         [HttpGet("category/{id}")]
         public async Task<IActionResult> GetCategory(int id)
         {
-            var category = await _repo.GetCategory(id);
+            var category = await _repo.GetCategoryAsync(id);
 
             return Ok(category);
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PlayMath.API.Helpers;
 using PlayMath.API.Models;
 
 namespace PlayMath.API.Data
@@ -11,7 +12,9 @@ namespace PlayMath.API.Data
          Task<bool> SaveAll();
 
          //Article
-         Task<IEnumerable<ArticleCategory>> GetCategories();
-         Task<ArticleCategory> GetCategory(int id);
+         Task<IEnumerable<ArticleCategory>> GetCategoriesAsync();
+         Task<ArticleCategory> GetCategoryAsync(int id);
+         Task<IEnumerable<Article>> GetArticlesAsync(ArticleParams articleParams);
+         Task<Article> GetArticleAsync(int id);
     }
 }

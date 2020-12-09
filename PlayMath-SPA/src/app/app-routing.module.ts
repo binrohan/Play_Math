@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Base Components
 import { ArticleFormComponent } from './_components/article-form/article-form.component';
+import { ArticleComponent } from './_components/article/article.component';
 import { ArticlesComponent } from './_components/articles/articles.component';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/login/login.component';
@@ -11,7 +12,6 @@ import { ProfileComponent } from './_components/profile/profile.component';
 import { QuestionsComponent } from './_components/questions/questions.component';
 import { QuizComponent } from './_components/quiz/quiz.component';
 import { RegisterComponent } from './_components/register/register.component';
-
 
 const routes: Routes = [
   {
@@ -29,6 +29,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'articles/new', component: ArticleFormComponent },
+      { path: 'article/:id', component: ArticleComponent },
       { path: '**', component: HomeComponent }, // it will change in future
     ],
   },
