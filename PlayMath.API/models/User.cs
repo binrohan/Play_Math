@@ -5,7 +5,9 @@ namespace PlayMath.API.Models
 {
     public class User : IdentityUser
     {
-        // public ICollection<Article> Articles { get; set; }
+        public ICollection<Article> Articles { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public bool ArticleSubscribed { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -16,5 +16,11 @@ namespace PlayMath.API.Data
          Task<ArticleCategory> GetCategoryAsync(int id);
          Task<IEnumerable<Article>> GetArticlesAsync(ArticleParams articleParams);
          Task<Article> GetArticleAsync(int id);
+
+         // Comment
+         Task<IEnumerable<Comment>> GetCommentsAsync(int articleId);
+         
+         // User
+         Task<User> GetUserAsync(string id);   
     }
 }

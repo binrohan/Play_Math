@@ -20,6 +20,13 @@ export class ArticleComponent implements OnInit {
   isLiked = false;
   likeCount = 69;
 
+  commentObj = {
+    commenter: 'Jhon doe',
+    commentDate: '12 jan 2018',
+    isLikedByWritter: true,
+    commentText: 'Very good writting, informative'
+  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,

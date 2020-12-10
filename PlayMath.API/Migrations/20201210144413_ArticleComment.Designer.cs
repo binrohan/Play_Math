@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlayMath.API.Data;
 
 namespace PlayMath.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20201210144413_ArticleComment")]
+    partial class ArticleComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,7 +162,7 @@ namespace PlayMath.API.Migrations
                     b.ToTable("ArticleCategories");
                 });
 
-            modelBuilder.Entity("PlayMath.API.Models.Comment", b =>
+            modelBuilder.Entity("PlayMath.API.Models.ArticleComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -347,7 +349,7 @@ namespace PlayMath.API.Migrations
                         .HasForeignKey("WriterId");
                 });
 
-            modelBuilder.Entity("PlayMath.API.Models.Comment", b =>
+            modelBuilder.Entity("PlayMath.API.Models.ArticleComment", b =>
                 {
                     b.HasOne("PlayMath.API.Models.User", "Commenter")
                         .WithMany("ArticleComments")

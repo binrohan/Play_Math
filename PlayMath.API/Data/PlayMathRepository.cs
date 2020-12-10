@@ -60,5 +60,27 @@ namespace PlayMath.API.Data
             return await _context.Articles.Include(a => a.Category).FirstOrDefaultAsync(a => a.Id == id);
         }
         
+        // User Repos
+        public async Task<User> GetUserAsync(string id)
+        {
+            var user = await _context.Users
+                .Include(u => u.UserRoles)
+                .Include(u => u.Articles)
+                .Include(u => u.Comments)
+                .FirstOrDefaultAsync(u => u.Id == id);
+                
+            return user;
+        }
+
+        // Comment Repos
+        public async Task<IEnumerable<Comment>> GetCommentsAsync(int articleId)
+        {
+            var comments = await _context.Comments
+                .Where(c => c.article.Id == articleId)
+                .Include(c => c.Commenter)
+                .ToListAsync();
+
+            return comments;
+        }
     }
 }

@@ -39,4 +39,13 @@
     />
     <button type="submit" class="btn btn-primary my-2">Comment</button>
   </form>
+  <hr>
+  <div>
+    <div><h5>{{commentObj.commenter}}</h5></div>
+    <p> <span>{{commentObj.commentDate}}</span></p>
+    <div class="row justify-content-between">
+      <div class="col-6">{{commentObj.commentText}}</div>
+      <div class="col-1"><fa-icon [icon]="faThumbsUp"></fa-icon></div>
+    </div>
+  </div>
 </div>
