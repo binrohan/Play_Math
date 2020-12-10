@@ -10,8 +10,8 @@ using PlayMath.API.Data;
 namespace PlayMath.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201206133054_addArticleAndArticleCategory")]
-    partial class addArticleAndArticleCategory
+    [Migration("20201210195115_'secondPeriod'")]
+    partial class secondPeriod
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,15 +123,26 @@ namespace PlayMath.API.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Published")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("WriterId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Articles");
                 });
@@ -149,6 +160,34 @@ namespace PlayMath.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ArticleCategories");
+                });
+
+            modelBuilder.Entity("PlayMath.API.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CommentText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CommenterId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("articleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommenterId");
+
+                    b.HasIndex("articleId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("PlayMath.API.Models.Role", b =>
@@ -186,6 +225,9 @@ namespace PlayMath.API.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("ArticleSubscribed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -301,6 +343,21 @@ namespace PlayMath.API.Migrations
                     b.HasOne("PlayMath.API.Models.ArticleCategory", "Category")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("PlayMath.API.Models.User", "Writer")
+                        .WithMany("Articles")
+                        .HasForeignKey("WriterId");
+                });
+
+            modelBuilder.Entity("PlayMath.API.Models.Comment", b =>
+                {
+                    b.HasOne("PlayMath.API.Models.User", "Commenter")
+                        .WithMany("Comments")
+                        .HasForeignKey("CommenterId");
+
+                    b.HasOne("PlayMath.API.Models.Article", "article")
+                        .WithMany()
+                        .HasForeignKey("articleId");
                 });
 
             modelBuilder.Entity("PlayMath.API.Models.UserRole", b =>

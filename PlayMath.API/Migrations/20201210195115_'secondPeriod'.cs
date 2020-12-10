@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlayMath.API.Migrations
 {
-    public partial class initial : Migration
+    public partial class secondPeriod : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "ArticleCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Category = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArticleCategories", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -39,7 +52,8 @@ namespace PlayMath.API.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    ArticleSubscribed = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,6 +79,37 @@ namespace PlayMath.API.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Articles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    SubTitle = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    Published = table.Column<DateTime>(nullable: false),
+                    WriterId = table.Column<string>(nullable: true),
+                    IsApproved = table.Column<bool>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Articles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Articles_ArticleCategories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ArticleCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Articles_AspNetUsers_WriterId",
+                        column: x => x.WriterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +197,44 @@ namespace PlayMath.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    articleId = table.Column<int>(nullable: true),
+                    CommenterId = table.Column<string>(nullable: true),
+                    CommentDate = table.Column<DateTime>(nullable: false),
+                    CommentText = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_CommenterId",
+                        column: x => x.CommenterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Articles_articleId",
+                        column: x => x.articleId,
+                        principalTable: "Articles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Articles_CategoryId",
+                table: "Articles",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Articles_WriterId",
+                table: "Articles",
+                column: "WriterId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +273,16 @@ namespace PlayMath.API.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_CommenterId",
+                table: "Comments",
+                column: "CommenterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_articleId",
+                table: "Comments",
+                column: "articleId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,7 +303,16 @@ namespace PlayMath.API.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Comments");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Articles");
+
+            migrationBuilder.DropTable(
+                name: "ArticleCategories");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

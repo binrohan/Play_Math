@@ -35,7 +35,11 @@ import { ArticleFormComponent } from './_components/article-form/article-form.co
 import { SummaryPipe } from './_pipes/summary.pipe';
 import { NewLinePipe } from './_pipes/newLine.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -60,7 +64,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+
+
+    JwtModule.forRoot({
+      config: {
+         tokenGetter,
+         allowedDomains: ['localhost:5000'],
+         disallowedRoutes: ['localhost:5000/api/auth']
+      }
+   })
   ],
   providers: [
     AuthService,

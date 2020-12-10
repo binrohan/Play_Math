@@ -76,8 +76,8 @@ namespace PlayMath.API.Data
         public async Task<IEnumerable<Comment>> GetCommentsAsync(int articleId)
         {
             var comments = await _context.Comments
-                .Where(c => c.article.Id == articleId)
                 .Include(c => c.Commenter)
+                .Where(c => c.article.Id == articleId)
                 .ToListAsync();
 
             return comments;

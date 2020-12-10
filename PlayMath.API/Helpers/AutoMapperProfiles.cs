@@ -17,8 +17,9 @@ namespace PlayMath.API.Helpers
             CreateMap<ArticleCategory, CategoriesToReturnDto>();
 
             // Comment Mapper
+            CreateMap<CommentToCreateDto, Comment>();
             CreateMap<Comment, CommentsToReturnDto>()
-                .ForMember(dest => dest.UserName, opt =>
+                .ForMember(dest => dest.Commenter, opt =>
                     opt.MapFrom(src => src.Commenter.UserName));
         }
     }

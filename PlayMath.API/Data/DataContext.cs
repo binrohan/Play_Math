@@ -14,9 +14,7 @@ namespace PlayMath.API.Data
     
         public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        // public DbSet<CommentLike> CommentLikes { get; set; }
         public DbSet<ArticleCategory> ArticleCategories { get; set; }
-        // public DbSet<Quiz> Priorities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder){
             base.OnModelCreating(builder);

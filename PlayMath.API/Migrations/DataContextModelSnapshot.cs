@@ -185,7 +185,7 @@ namespace PlayMath.API.Migrations
 
                     b.HasIndex("articleId");
 
-                    b.ToTable("ArtickeComments");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("PlayMath.API.Models.Role", b =>
@@ -350,7 +350,7 @@ namespace PlayMath.API.Migrations
             modelBuilder.Entity("PlayMath.API.Models.Comment", b =>
                 {
                     b.HasOne("PlayMath.API.Models.User", "Commenter")
-                        .WithMany("ArticleComments")
+                        .WithMany("Comments")
                         .HasForeignKey("CommenterId");
 
                     b.HasOne("PlayMath.API.Models.Article", "article")
