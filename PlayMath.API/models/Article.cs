@@ -12,6 +12,7 @@ namespace PlayMath.API.Models
         public DateTime Published { get; set; }
         public User Writer { get; set; }
         public bool IsApproved { get; set; }
+        public bool IsDeleted { get; set; }
         public ArticleCategory Category { get; set; }
 
     }

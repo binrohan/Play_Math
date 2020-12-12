@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using PlayMath.API.Models;
 
 namespace PlayMath.API.Dtos
@@ -12,7 +13,7 @@ namespace PlayMath.API.Dtos
         public DateTime Published { get; set; }
         public string WriterName { get; set; }
         public bool IsApproved { get; set; }
-        public ArticleCategory Category { get; set; }
+        public ICollection<string> Category { get; set; }
 
     }
 }

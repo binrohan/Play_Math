@@ -48,16 +48,19 @@ namespace PlayMath.API.Data
         {
             // Gotta back for implementing orderby date after another migration
             var articles = _context.Articles
+                            .Where(a => a.IsDeleted == false)
                             .Include(a => a.Category)
                             .AsQueryable();
             
             articles = TQuery.ArticleQuery(articleParams, articles);
+
             return await articles.ToListAsync();
         }
 
         public async Task<Article> GetArticleAsync(int id)
         {
             return await _context.Articles
+                .Where(a => a.IsDeleted == false)
                 .Include(a => a.Category)
                 .Include(a => a.Writer)
                 .FirstOrDefaultAsync(a => a.Id == id);

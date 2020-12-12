@@ -16,7 +16,10 @@ namespace PlayMath.API.Helpers
             CreateMap<ArticleToCreateDto, Article>();
             CreateMap<Article, ArticleToReturnDto>()
                 .ForMember(dest => dest.WriterName, opt => 
-                    opt.MapFrom(src => src.Writer.UserName));
+                    opt.MapFrom(src => src.Writer.UserName))
+                .ForMember(dest => dest.Category, opt => 
+                    opt.MapFrom(src => src.Category.Category));
+            CreateMap<ArticleToUpdateDto, Article>();
                     
             // Category Mapper
             CreateMap<ArticleCategory, CategoriesToReturnDto>();

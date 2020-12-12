@@ -47,18 +47,18 @@ namespace PlayMath.API.Controllers {
             int pageSize = articleParams.PageSize;
             int pageIndex = articleParams.PageIndex;
 
-            var articles = await _repo.GetArticlesAsync(articleParams);
+            var articlesFromRepo = await _repo.GetArticlesAsync(articleParams);
 
-            var articlesToReturn = _mapper.Map<IEnumerable<ArticleToReturnDto>>(articles);
+            var articles = _mapper.Map<IEnumerable<ArticleToReturnDto>>(articlesFromRepo);
 
-            return Ok(new {articlesToReturn, articleParams.Length});
+            return Ok(new {articles, articleParams.Length});
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)
         {
             var article = await _repo.GetArticleAsync(id);
-
+            
             var articleToReturn = _mapper.Map<ArticleToReturnDto>(article);
 
             
@@ -66,10 +66,36 @@ namespace PlayMath.API.Controllers {
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> UpdateArticle(int id, Article article)
+        public async Task<IActionResult> UpdateArticle(int id, ArticleToUpdateDto articleToUpdate)
         {
+            var article = await _repo.GetArticleAsync(id);
 
-            _repo.Add(article);
+            if(!article.Writer.UserName.Equals(articleToUpdate.WriterName))
+                return BadRequest("You are not permitted");
+
+            article.Category = await _repo.GetCategoryAsync(articleToUpdate.categoryId);
+
+            _mapper.Map(articleToUpdate, article);
+
+            
+
+            if(await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            throw new Exception("Article failed to update");
+        }
+
+        [HttpPost("delete/{id}/{uid}")]
+        public async Task<IActionResult> DeleteArticle(int id, string uid)
+        {
+            var article = await _repo.GetArticleAsync(id);
+
+            if(!article.Writer.Id.Equals(uid))
+                return BadRequest("You are not permitted");
+
+            article.IsDeleted = true;
 
             if(await _repo.SaveAll())
             {
