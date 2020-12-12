@@ -43,8 +43,6 @@ namespace PlayMath.API.Data
                     .HasForeignKey(ur => ur.RoleId)
                     .IsRequired();
             });
-
         }
-    
     }
 }

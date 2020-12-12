@@ -1,4 +1,5 @@
 import { Category } from './Category';
+import { User } from './User';
 
 export interface Article {
     id: number;
@@ -7,5 +8,8 @@ export interface Article {
     category: Category;
     body: string;
 
+    writer: User;
+    writerId: string;
+    writerName: string;
     published: Date;
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlayMath.API.Migrations
 {
-    public partial class secondPeriod : Migration
+    public partial class ThirdInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

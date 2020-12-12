@@ -1,3 +1,4 @@
+using System;
 namespace PlayMath.API.Dtos
 {
     public class ArticleToCreateDto
@@ -6,5 +7,7 @@ namespace PlayMath.API.Dtos
         public string SubTitle { get; set; }
         public string Body { get; set; }
         public int CategoryId { get; set; }
+        public string WriterId { get; set; }
+        public DateTime published { get; set; }
     }
 }

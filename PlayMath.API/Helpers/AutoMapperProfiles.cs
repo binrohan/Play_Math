@@ -14,6 +14,11 @@ namespace PlayMath.API.Helpers
 
             // Article Mapper
             CreateMap<ArticleToCreateDto, Article>();
+            CreateMap<Article, ArticleToReturnDto>()
+                .ForMember(dest => dest.WriterName, opt => 
+                    opt.MapFrom(src => src.Writer.UserName));
+                    
+            // Category Mapper
             CreateMap<ArticleCategory, CategoriesToReturnDto>();
 
             // Comment Mapper

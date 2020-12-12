@@ -46,6 +46,7 @@ export class ArticleComponent implements OnInit {
       (data) => {
         this.article = data;
         console.log('Article Load Successfully');
+        console.log(this.article);
         this.getComments();
       },
       (error) => {

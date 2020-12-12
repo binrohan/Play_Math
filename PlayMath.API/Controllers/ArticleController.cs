@@ -26,8 +26,10 @@ namespace PlayMath.API.Controllers {
         {
 
             var newArticle = _mapper.Map<Article>(articleToCreate);
+            
             newArticle.Category = await _repo.GetCategoryAsync(articleToCreate.CategoryId);
-
+            newArticle.Writer = await _repo.GetUserAsync(articleToCreate.WriterId);
+            
             _repo.Add(newArticle);
 
             if(await _repo.SaveAll())
@@ -47,15 +49,34 @@ namespace PlayMath.API.Controllers {
 
             var articles = await _repo.GetArticlesAsync(articleParams);
 
-            return Ok(new {articles, articleParams.Length});
+            var articlesToReturn = _mapper.Map<IEnumerable<ArticleToReturnDto>>(articles);
+
+            return Ok(new {articlesToReturn, articleParams.Length});
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArticle(int id)
         {
             var article = await _repo.GetArticleAsync(id);
+
+            var articleToReturn = _mapper.Map<ArticleToReturnDto>(article);
+
             
-            return Ok(article);
+            return Ok(articleToReturn);
+        }
+
+        [HttpPost("{id}")]
+        public async Task<IActionResult> UpdateArticle(int id, Article article)
+        {
+
+            _repo.Add(article);
+
+            if(await _repo.SaveAll())
+            {
+                return Ok();
+            }
+
+            throw new Exception("Article failed to update");
         }
 
         [HttpGet("categories")]

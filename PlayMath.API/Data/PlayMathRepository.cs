@@ -57,7 +57,10 @@ namespace PlayMath.API.Data
 
         public async Task<Article> GetArticleAsync(int id)
         {
-            return await _context.Articles.Include(a => a.Category).FirstOrDefaultAsync(a => a.Id == id);
+            return await _context.Articles
+                .Include(a => a.Category)
+                .Include(a => a.Writer)
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
         
         // User Repos

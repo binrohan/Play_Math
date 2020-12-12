@@ -10,8 +10,8 @@ using PlayMath.API.Data;
 namespace PlayMath.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201210195115_'secondPeriod'")]
-    partial class secondPeriod
+    [Migration("20201211145934_'ThirdInitial'")]
+    partial class ThirdInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

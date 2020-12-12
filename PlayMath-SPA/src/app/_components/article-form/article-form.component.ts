@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Article } from 'src/app/_models/Article';
 import { Category } from 'src/app/_models/Category';
 import { ArticleService } from 'src/app/_services/article.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-article-form',
@@ -19,7 +20,8 @@ export class ArticleFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class ArticleFormComponent implements OnInit {
       this.bodyText = this.bodyText.replace('/(?:\r\n|\r|\n)/g', '<br>');
 
       this.article = Object.assign({}, this.articleForm.value);
+      
+      this.article.published = new Date();
+      this.article.writerId = this.authService.decodedToken.nameid;
+
       this.articleService.addArticle(this.article).subscribe(
         () => {
           console.log('Article added successfully');

@@ -1,6 +1,6 @@
 <div class="component container">
   <h1>{{ article?.title | titlecase }}</h1>
-  <p class="lead">by {{ "Jhon Doe" }}</p>
+  <p class="lead">by {{ article?.writerName }}</p>
   <hr />
   <p>
     Posted on {{ article?.published || "January 1, 2020" }} at {{ "12.00 PM" }}
