@@ -92,7 +92,7 @@
       >
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">{{
-            article.category?.category || "Placeholder"
+            article.category[0] || "Placeholder"
           }}</strong>
           <h3 class="mb-0">{{ article.title }}</h3>
           <div class="mb-1 text-muted">

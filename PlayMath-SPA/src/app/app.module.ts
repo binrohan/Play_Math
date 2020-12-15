@@ -30,6 +30,7 @@ import { QuestionService } from './_services/question.service';
 import { ArticleComponent } from './_components/article/article.component';
 import { ArticleFormComponent } from './_components/article-form/article-form.component';
 import { QuestionFormComponent } from './_components/question-form/question-form.component';
+import { QuestionComponent } from './_components/question/question.component';
 
 
 // Pipes
@@ -59,6 +60,7 @@ export function tokenGetter() {
     ProfileComponent,
     QuestionsComponent,
     QuestionFormComponent,
+    QuestionComponent,
     QuizComponent,
     RegisterComponent,
     ArticleFormComponent,

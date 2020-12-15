@@ -1,3 +1,67 @@
-<p>
-  question-form works!
-</p>
+<div class="component container">
+  <h2>Post a new question</h2>
+  <form class="form-signin row mt-5" [formGroup]="questionForm" (ngSubmit)="addQuestion()">
+    <div class="col-md-8">
+      <div class="mb-3">
+        <label for="title" class="sr-only">title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        placeholder="title"
+        name="title"
+        required
+        formControlName="title"
+        [ngClass]="{
+          'is-invalid':
+            questionForm.get('title').errors &&
+            questionForm.get('title').touched
+        }"
+      />
+      </div>
+      <div class="mb-3">
+        <label for="body" class="sr-only">body</label>
+      <textarea
+        id="body"
+        class="form-control"
+        placeholder="Passages"
+        name="body"
+        style="height: 100%;"
+        name="body"
+        formControlName="body"
+        rows="15"
+        [ngClass]="{
+          'is-invalid':
+            questionForm.get('body').errors &&
+            questionForm.get('body').touched
+        }"
+      ></textarea>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="category"
+            >Category</label
+          >
+        </div>
+        <select class="custom-select" id="categoryId" name="categoryId" required formControlName='categoryId'
+        [ngClass]="{
+          'is-invalid':
+            questionForm.get('categoryId').errors &&
+            questionForm.get('categoryId').touched
+        }">
+          <option selected>Select</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.category}}</option>
+        </select>
+      </div>
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="submit"
+        [disabled] = "!questionForm.valid"
+      >
+        Post
+      </button>
+    </div>
+  </form>
+</div>
