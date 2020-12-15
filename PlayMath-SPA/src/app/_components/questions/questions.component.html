@@ -1,3 +1,69 @@
-<p>
-  questions works!
-</p>
+<div class="component container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li
+          class="list-group-item cursor hover"
+          [ngClass]="{ active: activeCate === 0 }"
+          (click)="onCategoryChange({ category: 'All', id: 0 })"
+        >
+          All
+        </li>
+        <li
+          *ngFor="let category of categories"
+          class="list-group-item cursor hover"
+          [ngClass]="{ active: activeCate === category.id }"
+          (click)="onCategoryChange(category)"
+        >
+          {{ category.category }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="mb-5 d-flex justify-content-between">
+        <h2>Question</h2>
+        <button class="btn btn-primary">Post New Question</button>
+      </div>
+      <div class="border-bottom border-top pt-2 px-2 solved cursor">
+        <div class="row">
+          <div class="col-md-2">
+            <p class="fw-bold">Name writer</p>
+            <p>25 january 2019</p>
+          </div>
+          <div class="col-md-7">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Exercitationem officiis rerum tempore sed nihil in?
+            </p>
+            <h5 class="badge badge-primary">Algebra</h5>
+          </div>
+          <div class="col-md-1 text-center pm-grid">
+            <div>
+              <p>69</p>
+              <p>viewed</p>
+            </div>
+          </div>
+          <div class="col-md-2 text-center pm-grid">
+            <div>
+              <p>5</p>
+              <p>answered</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="true" class="mt-2">
+        <ul class="pagination">
+          <li class="page-item" [ngClass]="{'disabled': true}">
+            <a class="page-link" href="#">Previous</a>
+          </li>
+          <li class="page-item" *ngFor="let index of []" [ngClass]="{'active': index === true}">
+            <a class="page-link cursor" (click)="onPageChange(index)">{{index + 1}}</a>
+          </li>
+          <li class="page-item" [ngClass]="{'disabled': true}">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

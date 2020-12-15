@@ -29,6 +29,7 @@ import { QuestionService } from './_services/question.service';
 // Secondary Component
 import { ArticleComponent } from './_components/article/article.component';
 import { ArticleFormComponent } from './_components/article-form/article-form.component';
+import { QuestionFormComponent } from './_components/question-form/question-form.component';
 
 
 // Pipes
@@ -36,6 +37,12 @@ import { SummaryPipe } from './_pipes/summary.pipe';
 import { NewLinePipe } from './_pipes/newLine.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+// Materials
+// import {MatListModule} from '@angular/material/list';
+// import {MatSelectModule} from '@angular/material/select';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -51,12 +58,16 @@ export function tokenGetter() {
     MathsComponent,
     ProfileComponent,
     QuestionsComponent,
+    QuestionFormComponent,
     QuizComponent,
     RegisterComponent,
     ArticleFormComponent,
     ArticleComponent,
     SummaryPipe,
-    NewLinePipe
+    NewLinePipe,
+    // Material
+    // MatListModule,
+    // MatSelectModule
   ],
   imports: [
     BrowserModule,
@@ -73,7 +84,10 @@ export function tokenGetter() {
          allowedDomains: ['localhost:5000'],
          disallowedRoutes: ['localhost:5000/api/auth']
       }
-   })
+   }),
+
+
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,
