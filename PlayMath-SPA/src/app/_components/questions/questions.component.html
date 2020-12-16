@@ -20,47 +20,117 @@
       </ul>
     </div>
     <div class="col-md-10">
-      <div class="mb-5 d-flex justify-content-between">
+      <div class="mb-3 d-flex justify-content-between">
         <h2>Question</h2>
-        <button class="btn btn-primary" [routerLink]="['/question/new']">Post New Question</button>
+        <button class="btn btn-primary" [routerLink]="['/question/new']">
+          Post New Question
+        </button>
       </div>
-      <div class="border-bottom border-top pt-2 px-2 solved cursor" (click)="goToQuestion(1)">
+      <div class="mb-2">
+        <form
+        class="form-group form-inline mb-0"
+        #searchForm="ngForm"
+        (ngSubmit)="onSearch()"
+      >
+        <label for="inputsearch" class="sr-only">search address</label>
+        <input
+          type="text"
+          id="inputsearch"
+          class="form-control"
+          placeholder="search"
+          name="search"
+          required
+          [(ngModel)]="filter"
+        />
+        <button
+          class="text-muted cursor btn mx-1"
+          type="submit"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="mx-3"
+            role="img"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <title>Search</title>
+            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+            <path d="M21 21l-5.2-5.2"></path>
+          </svg>
+        </button>
+      </form>
+      </div>
+      <div
+        class="border-bottom border-top pt-2 px-2 cursor"
+        [ngClass]="{'solved': question.isSolved}"
+        *ngFor="let question of questions"
+        (click)="goToQuestion(question.id)"
+      >
         <div class="row">
           <div class="col-md-2">
-            <p class="fw-bold">Name writer</p>
-            <p>25 january 2019</p>
+            <p class="fw-bold">{{ question.questioner }}</p>
+            <p>{{ question.postDate }}</p>
           </div>
           <div class="col-md-7">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Exercitationem officiis rerum tempore sed nihil in?
+              {{ question.title }}
             </p>
-            <h5 class="badge badge-primary">Algebra</h5>
+            <h5 class="badge badge-primary">{{ question.category }}</h5>
           </div>
           <div class="col-md-1 text-center pm-grid">
             <div>
-              <p>69</p>
+              <p>{{ question.viewed }}</p>
               <p>viewed</p>
             </div>
           </div>
           <div class="col-md-2 text-center pm-grid">
             <div>
-              <p>5</p>
+              <p>{{ "0" || 0 }}</p>
               <p>answered</p>
             </div>
           </div>
         </div>
       </div>
-      <div *ngIf="true" class="mt-2">
+      <div *ngIf="totalPage.length > 1" class="mt-2">
         <ul class="pagination">
-          <li class="page-item" [ngClass]="{'disabled': true}">
-            <a class="page-link" href="#">Previous</a>
+          <li
+            class="page-item"
+            [ngClass]="{ disabled: params.pageIndex === 0 }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChange(params.pageIndex - 1)"
+              >Previous</a
+            >
           </li>
-          <li class="page-item" *ngFor="let index of []" [ngClass]="{'active': index === true}">
-            <a class="page-link cursor" (click)="onPageChange(index)">{{index + 1}}</a>
+          <li
+            class="page-item"
+            *ngFor="let index of totalPage"
+            [ngClass]="{ active: index === params.pageIndex }"
+          >
+            <a class="page-link cursor" (click)="onPageChange(index)">{{
+              index + 1
+            }}</a>
           </li>
-          <li class="page-item" [ngClass]="{'disabled': true}">
-            <a class="page-link" href="#">Next</a>
+          <li
+            class="page-item"
+            [ngClass]="{
+              disabled: params.pageIndex === totalPage[totalPage.length - 1]
+            }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChange(params.pageIndex + 1)"
+              >Next</a
+            >
           </li>
         </ul>
       </div>

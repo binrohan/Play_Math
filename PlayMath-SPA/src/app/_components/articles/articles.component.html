@@ -24,7 +24,11 @@
             required
             [(ngModel)]="filter"
           />
-          <button class="text-muted cursor btn mx-1" type="submit" aria-label="Search">
+          <button
+            class="text-muted cursor btn mx-1"
+            type="submit"
+            aria-label="Search"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -108,18 +112,31 @@
       </div>
     </div>
   </div>
-  <div *ngIf="totalPage.length>1">
+  <div *ngIf="totalPage.length > 1">
     <ul class="pagination">
-      <li class="page-item" [ngClass]="{'disabled': articleParams.pageIndex === 0}">
-        <a class="page-link" href="#">Previous</a>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: articleParams.pageIndex === 0 }"
+      >
+        <a class="page-link cursor" (click)="onPageChange(articleParams.pageIndex - 1)">Previous</a>
       </li>
-      <li class="page-item" *ngFor="let index of totalPage" [ngClass]="{'active': index === articleParams.pageIndex}">
-        <a class="page-link cursor" (click)="onPageChange(index)">{{index + 1}}</a>
+      <li
+        class="page-item"
+        *ngFor="let index of totalPage"
+        [ngClass]="{ active: index === articleParams.pageIndex }"
+      >
+        <a class="page-link cursor" (click)="onPageChange(index)">{{
+          index + 1
+        }}</a>
       </li>
-      <li class="page-item" [ngClass]="{'disabled': articleParams.pageIndex === totalPage[totalPage.length-1]}">
-        <a class="page-link" href="#">Next</a>
+      <li
+        class="page-item"
+        [ngClass]="{
+          disabled: articleParams.pageIndex === totalPage[totalPage.length - 1]
+        }"
+      >
+        <a class="page-link cursor" (click)="onPageChange(articleParams.pageIndex + 1)">Next</a>
       </li>
     </ul>
   </div>
 </div>
-

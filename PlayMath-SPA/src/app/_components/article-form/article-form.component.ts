@@ -45,7 +45,7 @@ export class ArticleFormComponent implements OnInit {
       this.bodyText = this.bodyText.replace('/(?:\r\n|\r|\n)/g', '<br>');
 
       this.article = Object.assign({}, this.articleForm.value);
-      
+
       this.article.published = new Date();
       this.article.writerId = this.authService.decodedToken.nameid;
 

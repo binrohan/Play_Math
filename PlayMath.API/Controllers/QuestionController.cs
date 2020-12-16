@@ -35,7 +35,7 @@ namespace PlayMath.API.Controllers {
 
             if(await _repo.SaveAll())
             {
-                return Ok();
+                return Ok(newquestion);
             }
 
             throw new Exception("Question failed to add");
@@ -43,7 +43,7 @@ namespace PlayMath.API.Controllers {
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetQuestion([FromQuery]QuestionParams questionParams)
+        public async Task<IActionResult> GetQuestions([FromQuery]QuestionParams questionParams)
         {
             int pageSize = questionParams.PageSize;
             int pageIndex = questionParams.PageIndex;

@@ -16,6 +16,7 @@ export class QuestionFormComponent implements OnInit {
   question: any = {};
   categories: Category[];
   questionForm: FormGroup;
+  newQuestion: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +40,24 @@ export class QuestionFormComponent implements OnInit {
   }
 
   addQuestion(){
-    console.log(this.questionForm.value);
+    if (this.questionForm.valid) {
+
+      this.question = Object.assign({}, this.questionForm.value);
+
+      this.question.postDate = new Date();
+      this.question.questionerId = this.authService.decodedToken.nameid;
+
+      this.questionService.addQuestion(this.question).subscribe(
+        (data) => {
+          this.newQuestion = data;
+          console.log('Question added successfully');
+          this.router.navigate(['/question/' + this.newQuestion.id]);
+        },
+        (error) => {
+          console.log('Question added failed');
+        }
+      );
+    }
   }
 
   getCategories() {

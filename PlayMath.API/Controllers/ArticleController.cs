@@ -34,7 +34,7 @@ namespace PlayMath.API.Controllers {
 
             if(await _repo.SaveAll())
             {
-                return Ok();
+                return Ok(newArticle);
             }
 
             throw new Exception("Article failed to add");
