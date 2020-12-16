@@ -2,12 +2,12 @@
   <div class="row">
     <div class="col-md-9">
       <h1 class="mb-1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, nam!
+        {{question?.title}}
       </h1>
       <div>
-        <span>posted: {{ "26 january 2019" }}</span> &nbsp; &nbsp;
-        <span>Viewed: {{ "69" }}</span> &nbsp; &nbsp;
-        <span><h6 class="badge badge-sm badge-primary">Algebra</h6></span>
+        <span>posted: {{ question?.postDate | date:'E MMMM yyyy' }}</span> &nbsp; &nbsp;
+        <span>Viewed: {{ question?.viewed }}</span> &nbsp; &nbsp;
+        <span><h6 class="badge badge-sm badge-primary">{{question?.categoryName || question?.category?.category}}</h6></span>
       </div>
     </div>
     <div class="col-md-3 d-flex justify-content-end align-items-start">
@@ -22,7 +22,7 @@
       <div class="d-flex h1 justify-content-center align-items-center">
         <fa-icon
           class="cursor"
-          [ngClass]="{ 'icon-liked': isSolved }"
+          [ngClass]="{ 'icon-liked': question?.isSolved }"
           (click)="onSolvedClicked()"
           [icon]="faCheckCircle"
         ></fa-icon>
@@ -30,12 +30,7 @@
     </div>
     <div class="col-md-10">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem incidunt ea
-        iusto voluptates quaerat aliquid iure culpa officiis. Autem aut placeat
-        ea inventore itaque sapiente temporibus doloribus praesentium
-        repudiandae veniam necessitatibus laboriosam possimus sequi deleniti,
-        quis nemo officia dignissimos aperiam labore obcaecati consectetur
-        voluptas ad explicabo quia. Laudantium, a tempore.
+        {{question?.body}}
       </p>
     </div>
   </div>

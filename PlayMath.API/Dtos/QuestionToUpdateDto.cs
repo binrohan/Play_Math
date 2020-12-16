@@ -7,5 +7,6 @@ namespace PlayMath.API.Dtos
         public int MyProperty { get; set; }
         public string Questioner { get; set; }
         public int CategoryId { get; set; }
+        public bool IsSolved { get; set; }
     }
 }

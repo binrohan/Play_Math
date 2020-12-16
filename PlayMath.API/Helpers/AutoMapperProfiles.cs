@@ -36,7 +36,7 @@ namespace PlayMath.API.Helpers
             CreateMap<Question, QuestionToReturnDto>()
                 .ForMember(dest => dest.Questioner, opt => 
                     opt.MapFrom(src => src.QuestionBy.UserName))
-                .ForMember(dest => dest.Category, opt =>
+                .ForMember(dest => dest.CategoryName, opt =>
                     opt.MapFrom(src => src.Category.Category));
             CreateMap<QuestionToUpdateDto, Question>();
                 

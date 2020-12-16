@@ -1,4 +1,5 @@
 using System;
+using PlayMath.API.Models;
 
 namespace PlayMath.API.Dtos
 {
@@ -12,7 +13,9 @@ namespace PlayMath.API.Dtos
         public bool IsSolved { get; set; }
         public bool IsDeleted { get; set; }
 
-        public string Category { get; set; }
+        public string CategoryName { get; set; }
         public string Questioner { get; set; }
+
+        public ArticleCategory Category { get; set; }
     }
 }

@@ -77,13 +77,13 @@
         <div class="row">
           <div class="col-md-2">
             <p class="fw-bold">{{ question.questioner }}</p>
-            <p>{{ question.postDate }}</p>
+            <p>{{ question.postDate | date:'d MMMM y'}}</p>
           </div>
           <div class="col-md-7">
             <p>
               {{ question.title }}
             </p>
-            <h5 class="badge badge-primary">{{ question.category }}</h5>
+            <h5 class="badge badge-primary">{{ question?.category?.category }}</h5>
           </div>
           <div class="col-md-1 text-center pm-grid">
             <div>

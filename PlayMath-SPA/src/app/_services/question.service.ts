@@ -31,4 +31,8 @@ export class QuestionService {
   getQuestion(id: number) {
     return this.http.get<Question>(this.baseUrl + '/' + id);
   }
+
+  updateQuestion(question: {}, id: number){
+    return this.http.put<Question>(this.baseUrl + '/' + id, question);
+  }
 }

@@ -66,14 +66,17 @@ namespace PlayMath.API.Controllers {
             return Ok(questionToReturn);
         }
 
-        [HttpPost("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuestion(int id, QuestionToUpdateDto questionToUpdate)
         {
             var question = await _repo.GetQuestionAsync(id);
 
-            if(!question.QuestionBy.UserName.Equals(questionToUpdate.Questioner))
+            var user = await _repo.GetUserAsync(questionToUpdate.Questioner);
+
+            if(!question.QuestionBy.UserName.Equals(user.UserName))
                 return BadRequest("You are not permitted");
 
+            
             question.Category = await _repo.GetCategoryAsync(questionToUpdate.CategoryId);
 
             _mapper.Map(questionToUpdate, question);
@@ -82,13 +85,13 @@ namespace PlayMath.API.Controllers {
 
             if(await _repo.SaveAll())
             {
-                return Ok();
+                return Ok(question);
             }
 
             throw new Exception("Question failed to update");
         }
 
-        [HttpPost("delete/{id}/{uid}")]
+        [HttpPut("delete/{id}/{uid}")]
         public async Task<IActionResult> DeleteQuestion(int id, string uid)
         {
             var question = await _repo.GetQuestionAsync(id);
@@ -100,11 +103,10 @@ namespace PlayMath.API.Controllers {
 
             if(await _repo.SaveAll())
             {
-                return Ok();
+                return Ok(question);
             }
 
             throw new Exception("Question failed to update");
         }
-
     }
 }
