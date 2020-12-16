@@ -88,5 +88,28 @@ namespace PlayMath.API.Data
 
             return comments;
         }
+
+        // Question Repo
+        public async Task<IEnumerable<Question>> GetQuestionsAsync(QuestionParams questionParams)
+        {
+            // Gotta back for implementing orderby date after another migration
+            var questions = _context.Questions
+                            .Where(a => a.IsDeleted == false)
+                            .Include(a => a.Category)
+                            .AsQueryable();
+            
+            questions = TQuery.QuestionQuery(questionParams, questions);
+
+            return await questions.ToListAsync();
+        }
+
+        public async Task<Question> GetQuestionAsync(int id)
+        {
+            return await _context.Questions
+                .Where(a => a.IsDeleted == false)
+                .Include(a => a.Category)
+                .Include(a => a.QuestionBy)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
     }
 }

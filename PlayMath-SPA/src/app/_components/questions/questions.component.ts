@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from 'src/app/_models/Category';
 import { ArticleService } from 'src/app/_services/article.service';
 import { QuestionService } from 'src/app/_services/question.service';
@@ -13,7 +14,7 @@ export class QuestionsComponent implements OnInit {
   categories: Category[];
   activeCate = 0;
 
-  constructor(private articleService: ArticleService, private questionServive: QuestionService) { }
+  constructor(private articleService: ArticleService, private questionServive: QuestionService, private router: Router) { }
 
   ngOnInit() {
     this.getCategories();
@@ -33,8 +34,13 @@ export class QuestionsComponent implements OnInit {
   onCategoryChange(category: Category){
     this.activeCate = category.id;
   }
+
   onPageChange(index){
     
+  }
+
+  goToQuestion(id){
+    this.router.navigate(['/question/' + id]);
   }
 
 }

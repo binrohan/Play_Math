@@ -24,7 +24,7 @@
         <h2>Question</h2>
         <button class="btn btn-primary" [routerLink]="['/question/new']">Post New Question</button>
       </div>
-      <div class="border-bottom border-top pt-2 px-2 solved cursor">
+      <div class="border-bottom border-top pt-2 px-2 solved cursor" (click)="goToQuestion(1)">
         <div class="row">
           <div class="col-md-2">
             <p class="fw-bold">Name writer</p>

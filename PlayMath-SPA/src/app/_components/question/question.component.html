@@ -1,3 +1,92 @@
-<p>
-  question works!
-</p>
+<div class="component container">
+  <div class="row">
+    <div class="col-md-9">
+      <h1 class="mb-1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, nam!
+      </h1>
+      <div>
+        <span>posted: {{ "26 january 2019" }}</span> &nbsp; &nbsp;
+        <span>Viewed: {{ "69" }}</span> &nbsp; &nbsp;
+        <span><h6 class="badge badge-sm badge-primary">Algebra</h6></span>
+      </div>
+    </div>
+    <div class="col-md-3 d-flex justify-content-end align-items-start">
+      <button class="btn btn-primary" [routerLink]="['/question/new']">
+        Post New Question
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div class="row mb-4">
+    <div class="col-md-2">
+      <div class="d-flex h1 justify-content-center align-items-center">
+        <fa-icon
+          class="cursor"
+          [ngClass]="{ 'icon-liked': isSolved }"
+          (click)="onSolvedClicked()"
+          [icon]="faCheckCircle"
+        ></fa-icon>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem incidunt ea
+        iusto voluptates quaerat aliquid iure culpa officiis. Autem aut placeat
+        ea inventore itaque sapiente temporibus doloribus praesentium
+        repudiandae veniam necessitatibus laboriosam possimus sequi deleniti,
+        quis nemo officia dignissimos aperiam labore obcaecati consectetur
+        voluptas ad explicabo quia. Laudantium, a tempore.
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div><h3>Answers {{'4'}}</h3></div>
+  <div class="row my-4 p-2">
+    <div class="col-md-2">
+      <div class="d-flex h1 justify-content-center align-items-center">
+        <fa-icon
+          class="cursor"
+          [ngClass]="{ 'icon-liked': isBestAnswer }"
+          (click)="onBestAnswerClicked()"
+          [icon]="faStar"
+        ></fa-icon>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+        necessitatibus deleniti quidem repellat doloremque! Perferendis, illum
+        rem iusto eaque saepe est totam ipsam accusamus illo!
+      </p>
+    </div>
+  </div>
+  <div *ngIf="true" class="mt-2">
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{'disabled': true}">
+        <a class="page-link" href="#">Previous</a>
+      </li>
+      <li class="page-item" *ngFor="let index of []" [ngClass]="{'active': index === true}">
+        <a class="page-link cursor" (click)="onPageChange(index)">{{index + 1}}</a>
+      </li>
+      <li class="page-item" [ngClass]="{'disabled': true}">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+  <div><h3>Your Answer</h3></div>
+  <form class="form-group mb-0" #commentForm="ngForm" (ngSubmit)="postAnswer()">
+    <label for="inputcomment" class="sr-only">Comment</label>
+    <input
+      type="text"
+      id="inputcomment"
+      class="form-control"
+      placeholder="comment"
+      name="comment"
+      required
+      [(ngModel)]="answer.commentText"
+    />
+    <button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary my-2">Post</button>
+  </form>
+
+</div>

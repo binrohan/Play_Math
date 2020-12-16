@@ -27,7 +27,6 @@ namespace PlayMath.API.Controllers
         }
 
         [HttpPost("quadratic")]
-
         public List<QuadraticSolutionDto> Quadratic(Quadratic quadratic)
         {
 

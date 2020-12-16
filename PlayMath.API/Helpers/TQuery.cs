@@ -23,5 +23,24 @@ namespace PlayMath.API.Helpers
 
             return articles;
         }
+
+        public static IQueryable<Question> QuestionQuery (QuestionParams questionParams, IQueryable<Question> questions)
+        {
+            if(!string.IsNullOrEmpty(questionParams.Filter))
+            {
+                questions = questions.Where(a => a.Title.Contains(questionParams.Filter));
+            }
+
+            if(questionParams.CategoryBy != 0)
+            {
+                questions = questions.Where(a => a.Category.Id == questionParams.CategoryBy);
+            }
+
+            questionParams.Length = questions.Count();
+
+            questions = questions.Skip(questionParams.PageIndex*questionParams.PageSize).Take(questionParams.PageSize).Select(a => a);
+
+            return questions;
+        }
     }
 }

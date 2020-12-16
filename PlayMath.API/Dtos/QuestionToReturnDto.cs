@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 
-namespace PlayMath.API.Models
+namespace PlayMath.API.Dtos
 {
-    public class Question
+    public class QuestionToReturnDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -12,8 +11,8 @@ namespace PlayMath.API.Models
         public int Viewed { get; set; }
         public bool IsSolved { get; set; }
         public bool IsDeleted { get; set; }
-        public ArticleCategory Category { get; set; }
-        public User QuestionBy { get; set; }
-        public ICollection<Answer> Answers { get; set; }
+
+        public string Category { get; set; }
+        public string Questioner { get; set; }
     }
 }

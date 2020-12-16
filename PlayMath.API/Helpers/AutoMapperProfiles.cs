@@ -29,6 +29,17 @@ namespace PlayMath.API.Helpers
             CreateMap<Comment, CommentsToReturnDto>()
                 .ForMember(dest => dest.Commenter, opt =>
                     opt.MapFrom(src => src.Commenter.UserName));
+
+
+            // Question Mapper
+            CreateMap<QuestionToCreateDto, Question>();
+            CreateMap<Question, QuestionToReturnDto>()
+                .ForMember(dest => dest.Questioner, opt => 
+                    opt.MapFrom(src => src.QuestionBy.UserName))
+                .ForMember(dest => dest.Category, opt =>
+                    opt.MapFrom(src => src.Category.Category));
+            CreateMap<QuestionToUpdateDto, Question>();
+                
         }
     }
 }
