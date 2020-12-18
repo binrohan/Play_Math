@@ -42,5 +42,14 @@ namespace PlayMath.API.Helpers
 
             return questions;
         }
+
+        public static IQueryable<Answer> QuestionQuery (AnswerParams questionParams, IQueryable<Answer> questions)
+        {
+            questionParams.Length = questions.Count();
+
+            questions = questions.Skip(questionParams.PageIndex*questionParams.PageSize).Take(questionParams.PageSize).Select(a => a);
+
+            return questions;
+        }
     }
 }

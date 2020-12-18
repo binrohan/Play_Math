@@ -26,5 +26,9 @@ namespace PlayMath.API.Data
          // Question 
          Task<IEnumerable<Question>> GetQuestionsAsync(QuestionParams articleParams);
          Task<Question> GetQuestionAsync(int id);
+
+         // Answer 
+         Task<IEnumerable<Answer>> GetAnswersAsync(int id, AnswerParams answerParams);
+         Task<Answer> GetAnswerAsync(int id);
     }
 }

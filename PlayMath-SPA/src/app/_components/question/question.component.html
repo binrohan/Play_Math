@@ -5,7 +5,7 @@
         {{question?.title}}
       </h1>
       <div>
-        <span>posted: {{ question?.postDate | date:'E MMMM yyyy' }}</span> &nbsp; &nbsp;
+        <span>posted: {{ question?.postDate | date:'dd MMMM yyyy' }}</span> &nbsp; &nbsp;
         <span>Viewed: {{ question?.viewed }}</span> &nbsp; &nbsp;
         <span><h6 class="badge badge-sm badge-primary">{{question?.categoryName || question?.category?.category}}</h6></span>
       </div>
@@ -35,43 +35,64 @@
     </div>
   </div>
   <hr>
-  <div><h3>Answers {{'4'}}</h3></div>
-  <div class="row my-4 p-2">
+  <div><h3>Answers {{ answerCount || 0}}</h3></div>
+  <div class="row my-4 p-2" *ngFor="let ans of answers">
     <div class="col-md-2">
       <div class="d-flex h1 justify-content-center align-items-center">
         <fa-icon
           class="cursor"
-          [ngClass]="{ 'icon-liked': isBestAnswer }"
-          (click)="onBestAnswerClicked()"
+          [ngClass]="{ 'icon-liked': ans.isBestAnswer }"
+          (click)="onBestAnswerClicked(ans)"
           [icon]="faStar"
         ></fa-icon>
       </div>
     </div>
     <div class="col-md-10">
+      <h4>{{ans.answeredBy.userName}}</h4>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-        necessitatibus deleniti quidem repellat doloremque! Perferendis, illum
-        rem iusto eaque saepe est totam ipsam accusamus illo!
+        {{ans.body}}
       </p>
     </div>
   </div>
-  <div *ngIf="true" class="mt-2">
+  <div *ngIf="totalPage.length > 1" class="mt-2">
     <ul class="pagination">
-      <li class="page-item" [ngClass]="{'disabled': true}">
-        <a class="page-link" href="#">Previous</a>
+      <li
+        class="page-item"
+        [ngClass]="{ disabled: params.pageIndex === 0 }"
+      >
+        <a
+          class="page-link cursor"
+          (click)="onPageChange(params.pageIndex - 1)"
+          >Previous</a
+        >
       </li>
-      <li class="page-item" *ngFor="let index of []" [ngClass]="{'active': index === true}">
-        <a class="page-link cursor" (click)="onPageChange(index)">{{index + 1}}</a>
+      <li
+        class="page-item"
+        *ngFor="let index of totalPage"
+        [ngClass]="{ active: index === params.pageIndex }"
+      >
+        <a class="page-link cursor" (click)="onPageChange(index)">{{
+          index + 1
+        }}</a>
       </li>
-      <li class="page-item" [ngClass]="{'disabled': true}">
-        <a class="page-link" href="#">Next</a>
+      <li
+        class="page-item"
+        [ngClass]="{
+          disabled: params.pageIndex === totalPage[totalPage.length - 1]
+        }"
+      >
+        <a
+          class="page-link cursor"
+          (click)="onPageChange(params.pageIndex + 1)"
+          >Next</a
+        >
       </li>
     </ul>
     <hr>
   </div>
   <div><h3>Your Answer</h3></div>
   <form class="form-group mb-0" #commentForm="ngForm" (ngSubmit)="postAnswer()">
-    <label for="inputcomment" class="sr-only">Comment</label>
+    <label for="inputcomment" class="sr-only">Your answer</label>
     <input
       type="text"
       id="inputcomment"
@@ -79,7 +100,7 @@
       placeholder="comment"
       name="comment"
       required
-      [(ngModel)]="answer.commentText"
+      [(ngModel)]="answer.body"
     />
     <button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary my-2">Post</button>
   </form>

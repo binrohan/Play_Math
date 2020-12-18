@@ -39,6 +39,11 @@ namespace PlayMath.API.Helpers
                 .ForMember(dest => dest.CategoryName, opt =>
                     opt.MapFrom(src => src.Category.Category));
             CreateMap<QuestionToUpdateDto, Question>();
+
+
+            // Answer Mapper
+            CreateMap<AnswerToCreateDto, Answer>();
+            CreateMap<AnswerToUpdateDto, Answer>();
                 
         }
     }

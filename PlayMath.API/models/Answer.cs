@@ -7,5 +7,6 @@ namespace PlayMath.API.Models
         public bool IsBestAnswer { get; set; }
         public User AnsweredBy { get; set; }
         public Question Question { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

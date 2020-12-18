@@ -1,3 +1,5 @@
+using System;
+
 namespace PlayMath.API.Dtos
 {
     public class QuestionToCreateDto
@@ -6,5 +8,6 @@ namespace PlayMath.API.Dtos
         public string Body { get; set; }
         public string QuestionerId { get; set; }
         public int CategoryId { get; set; }
+        public DateTime PostDate { get; set; }
     }
 }
