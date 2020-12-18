@@ -1,0 +1,46 @@
+<div class="component container">
+  <h2>Mode: The Most Common Value</h2>
+  <p>Enter number separated by commas.</p>
+  <div>
+    <form class="form-inline">
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Numbers = </div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          id="inlineFormInputGroupUsername2 numbers"
+          name="numbers"
+          [placeholder] = "placeholder"
+          [(ngModel)]="model.numbers"
+          (keypress) = "checkInputChar($event)"
+        />
+      </div>
+
+      <button type="submit" (click)="solve()" class="btn btn-primary mb-2">
+        Submit
+      </button>
+    </form>
+  </div>
+  <hr />
+  <div>
+    <p *ngIf="isSolveClicked">
+      Your numbers are :
+      <span class="mode__review-equation">{{model.numbers}}</span>
+    </p>
+    <section class="solved" *ngIf="isSolveClicked && success">
+      <div>
+        <p class="solved__title">Mode: The Most Common Value</p>
+        <div class="solved__equation mb-4"><span *ngFor="let number of solution.numbers"><span [ngClass] = "{'result':number === solution.result}">{{number}}</span></span></div>
+        <div class="solved__result">
+          <!-- <p>The Mode value is the value that appears the most number of times</p> -->
+          <p>Result: {{solution.result}}</p>
+        </div>
+      </div>
+    </section>
+    <section class="math-error" *ngIf="isSolveClicked && !success">
+      <p>Something went worng!</p>
+    </section>
+  </div>
+</div>

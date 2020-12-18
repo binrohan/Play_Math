@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayMath.API.Dtos;
 using PlayMath.API.Dtos.AlgebraDtos;
@@ -8,6 +9,7 @@ namespace PlayMath.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class AlgebraController : ControllerBase
     {
         private readonly IAlgebra _algebra;

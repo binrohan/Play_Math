@@ -1,0 +1,82 @@
+// Light Theme Colors
+$primary-color: #f6fafd;
+$secondary-color: #e91e63;
+$text-color: #000000de;
+$equaltion-color: black;
+$feature-color: #3f51b5;
+
+$primary-fonts: "Lato", sans-serif;
+$secondary-fonts: "Charm", cursive;
+
+@mixin equation {
+  font-family: $secondary-fonts;
+  color: $equaltion-color;
+  font-size: 1.5rem;
+}
+@mixin second-margin {
+  margin: 20px 0;
+}
+.math-error {
+  @include second-margin;
+
+  padding: 10px 10px 10px 20px;
+  border-left: 5px solid $secondary-color;
+  background-color: #fcf3f3;
+
+  &__line {
+    margin: 5px 0;
+  }
+}
+
+.solved {
+  @include second-margin;
+
+  padding: 10px 10px 10px 20px;
+  border-left: 5px solid $feature-color;
+  background-color: whitesmoke;
+
+  &__line {
+    @include equation;
+
+    margin: 20px 0;
+  }
+}
+
+.equation {
+  @include equation;
+}
+
+.review-numbers {
+  margin: 20px 0;
+  @include equation;
+}
+
+@mixin math-solved {
+  @include second-margin;
+
+  padding: 10px 10px 10px 20px;
+  border-left: 5px solid $feature-color;
+  background-color: whitesmoke;
+
+  &__lines {
+    @include equation;
+
+    margin: 5px 0;
+  }
+}
+
+.solved {
+  @include math-solved;
+
+  &__equation {
+    @include equation;
+  }
+
+  span {
+    margin: 0 10px 0 0;
+  }
+
+  &__result {
+    font-size: 1.5rem;
+  }
+}

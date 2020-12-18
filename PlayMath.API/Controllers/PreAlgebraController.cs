@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PlayMath.API.Dtos.PreAlgebraDtos;
 using PlayMath.API.MathEngine;
@@ -6,6 +7,7 @@ namespace PlayMath.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class PreAlgebraController : ControllerBase
     {
         private readonly IPreAlgebra _preAlgebra;

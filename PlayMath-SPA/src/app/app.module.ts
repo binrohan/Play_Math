@@ -31,6 +31,11 @@ import { ArticleComponent } from './_components/article/article.component';
 import { ArticleFormComponent } from './_components/article-form/article-form.component';
 import { QuestionFormComponent } from './_components/question-form/question-form.component';
 import { QuestionComponent } from './_components/question/question.component';
+import { MeanComponent } from './_components/maths/mean/mean.component';
+import { ModeComponent } from './_components/maths/mode/mode.component';
+import { MedianComponent } from './_components/maths/median/median.component';
+import { QuadraticComponent } from './_components/maths/quadratic/quadratic.component';
+import { TrinomialComponent } from './_components/maths/trinomial/trinomial.component';
 
 
 // Pipes
@@ -67,6 +72,11 @@ export function tokenGetter() {
     ArticleComponent,
     SummaryPipe,
     NewLinePipe,
+    MeanComponent,
+    ModeComponent,
+    MedianComponent,
+    QuadraticComponent,
+    TrinomialComponent
     // Material
     // MatListModule,
     // MatSelectModule
