@@ -51,5 +51,19 @@ namespace PlayMath.API.Helpers
 
             return questions;
         }
+
+        public static IQueryable<User> UserQuery (UserParams articleParams, IQueryable<User> articles)
+        {
+            if(!string.IsNullOrEmpty(articleParams.Filter))
+            {
+                articles = articles.Where(a => a.UserName.Contains(articleParams.Filter));
+            }
+
+            articleParams.Length = articles.Count();
+
+            articles = articles.Skip(articleParams.PageIndex*articleParams.PageSize).Take(articleParams.PageSize).Select(a => a);
+
+            return articles;
+        }
     }
 }

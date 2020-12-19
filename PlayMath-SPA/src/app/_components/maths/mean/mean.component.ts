@@ -54,5 +54,4 @@ export class MeanComponent implements OnInit {
     const k = event.charCode;
     return (k > 47 && k < 58) || k === 44;
   }
-
 }

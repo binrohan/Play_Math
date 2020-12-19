@@ -21,7 +21,8 @@ namespace PlayMath.API.Data
          Task<IEnumerable<Comment>> GetCommentsAsync(int articleId);
          
          // User
-         Task<User> GetUserAsync(string id);   
+         Task<User> GetUserAsync(string id); 
+         Task<IEnumerable<User>> GetUsersAsync(UserParams userParams);  
 
          // Question 
          Task<IEnumerable<Question>> GetQuestionsAsync(QuestionParams articleParams);
@@ -30,5 +31,8 @@ namespace PlayMath.API.Data
          // Answer 
          Task<IEnumerable<Answer>> GetAnswersAsync(int id, AnswerParams answerParams);
          Task<Answer> GetAnswerAsync(int id);
+
+
+         // Users
     }
 }

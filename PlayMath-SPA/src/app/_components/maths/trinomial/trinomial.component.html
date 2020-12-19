@@ -55,7 +55,7 @@
       <span class="equation">
         {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0">+</span>
         {{ model.b }}x <span *ngIf="model.b > 0">+</span>{{ model.c }}</span
-      >
+      > 
     </p>
     <section class="solved" *ngIf="isSolveClicked && success">
       <p class="solved__line" *ngFor="let s of solved">{{s.solutionLine}}</p>

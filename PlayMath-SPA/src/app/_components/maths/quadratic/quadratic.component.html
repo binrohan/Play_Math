@@ -1,5 +1,5 @@
 <div class="component container">
-  <h2>Trinomial Equation</h2>
+  <h2>Quadratic Equation</h2>
   <p>Equation Format</p>
   <p>ax<sup>2</sup> + bx + c = d</p>
   <div>
@@ -70,9 +70,9 @@
     <p *ngIf="isSolveClicked">
       Your equation is :
       <span class="equation">
-        {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0">+</span>
-        {{ model.b }}x <span *ngIf="model.b > 0">+</span>{{ model.c }}</span
-      >
+        {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0"> + </span>
+      {{ model.b }}x <span *ngIf="model.b > 0"> + </span>{{ model.c }} = {{model.d}}</span
+    >
     </p>
     <section class="solved" *ngIf="isSolveClicked && success">
       <p class="solved__line" *ngFor="let s of solved">{{s.solutionLine}}</p>

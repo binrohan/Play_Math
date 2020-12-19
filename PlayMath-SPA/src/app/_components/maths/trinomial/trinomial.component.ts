@@ -14,6 +14,7 @@ export class TrinomialComponent implements OnInit {
     a: 1,
     b: 7,
     c: 12,
+    d: 0,
     equation: 'xxxxx',
   };
 

@@ -1,18 +1,20 @@
 <div class="component container">
-  <h2>Mode: The Most Common Value</h2>
+  <h2>Mean: The Average Value</h2>
   <p>Enter number separated by commas.</p>
   <div>
     <form class="form-inline">
       <div class="input-group mb-2 mr-sm-2">
         <div class="input-group-prepend">
-          <div class="input-group-text">a =</div>
+          <div class="input-group-text">Numbers = </div>
         </div>
         <input
-          type="number"
-          class="form-control"
-          id="inlineFormInputGroupUsername2"
-          name="a"
-          [(ngModel)]="model.numbers"
+        type="text"
+        class="form-control"
+        id="inlineFormInputGroupUsername2 numbers"
+        name="numbers"
+        [placeholder] = "placeholder"
+        [(ngModel)]="model.numbers"
+        (keypress) = "checkInputChar($event)"
         />
       </div>
 
@@ -29,11 +31,14 @@
     </p>
     <section class="solved" *ngIf="isSolveClicked && success">
       <div>
-        <p class="solved__title">Mode: The Most Common Value</p>
-        <div class="solved__equation"><span *ngFor="let number of solution.numbers"><span [ngClass] = "{'result':number === solution.result}">{{number}}</span></span></div>
-        <div class="solved__result">
-          <!-- <p>The Mode value is the value that appears the most number of times</p> -->
-          <p>Result: {{solution.result}}</p>
+        <p class="solved__title">Mean: The mean value is the average value</p>
+        <div>
+          <p class="solved__equation mb-2">Sum of the numbers:</p>
+          <p class="solved__equation mb-2"> <span *ngFor="let number of solution.numbers; let i = index"><span>{{number}}<span class="mx-2" *ngIf="i !== solution.numbers.length - 1">+</span></span></span> = {{sum}}</p>
+          <p class="solved__equation mb-4">Average: sum/number of values = {{sum}}/{{solution.numbers.length}} = {{sum/solution.numbers.length | number: '1.1-2'}}</p>
+        </div>
+        <div>
+          <p class="solved__result">Result: {{sum/solution.numbers.length | number: '1.1-2'}}</p>
         </div>
       </div>
     </section>

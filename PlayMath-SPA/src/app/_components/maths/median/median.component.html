@@ -1,3 +1,52 @@
-<p>
-  median works!
-</p>
+<div class="component container">
+  <h2>Median: Middle Value from Sorted Numbers</h2>
+  <p>Enter number separated by commas.</p>
+  <div>
+    <form class="form-inline">
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Numbers = </div>
+        </div>
+        <input
+        type="text"
+        class="form-control"
+        id="inlineFormInputGroupUsername2 numbers"
+        name="numbers"
+        [placeholder] = "placeholder"
+        [(ngModel)]="model.numbers"
+        (keypress) = "checkInputChar($event)"
+        />
+      </div>
+
+      <button type="submit" (click)="solve()" class="btn btn-primary mb-2">
+        Submit
+      </button>
+    </form>
+  </div>
+  <hr />
+  <div>
+    <p *ngIf="isSolveClicked">
+      Your numbers are :
+      <span class="mode__review-equation">{{model.numbers}}</span>
+    </p>
+    <section class="solved" *ngIf="isSolveClicked && success">
+      <div>
+        <p class="solved__title">Median: The median is the value in the middle, after you have sorted all the values</p>
+        <div><p class="solved__equation mb-3">Sorted Numbers: </p>
+          <p class="solved__equation mb-4"><span *ngFor="let number of sortedNumbers; let i = index"><span [ngClass] = "{'result':index.includes(i)}">{{number}}</span></span></p>
+        </div>
+        <div *ngIf="isLengthEven">
+          <p class="solved__equation mb-3">sum of middle values = </p>
+          <p class="solved__equation mb-3">{{sortedNumbers[index[0]]}} + {{sortedNumbers[index[1]]}} = {{sortedNumbers[index[0]] + sortedNumbers[index[0]]}}</p>
+          <p class="solved__equation mb-4">therefore median is: {{sortedNumbers[index[0]] + sortedNumbers[index[0]]}} / 2 = {{medianResult}}</p>
+        </div>
+        <div>
+          <p class="solved__result">Result: {{medianResult}}</p>
+        </div>
+      </div>
+    </section>
+    <section class="math-error" *ngIf="isSolveClicked && !success">
+      <p>Something went worng!</p>
+    </section>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PlayMath.API.Dtos;
@@ -44,7 +45,17 @@ namespace PlayMath.API.MathEngine
             else
             {
                 //TODO
-                return null;
+                solution.Add(new QuadraticSolutionDto(){
+                    SolutionLine = "x = ( - (" + b + ") + √(" + b + "² - 4*" + a + "*" + c + " )) / ( 2*" + a + " )  Or,  x = ( - (" + b + ") - √(" + b + "² - 4*" + a + "*" + c + " )) / ( 2*" + a + " )",
+                    Description = "A"
+                });
+                double result1 = ((-1*b) + Math.Sqrt((b*b) - (4*a*c)))/(a*2);
+                double result2 = ((-1*b) - Math.Sqrt((b*b) - (4*a*c)))/(a*2);
+                solution.Add(new QuadraticSolutionDto(){
+                    SolutionLine = "x = " + Math.Round(result1, 2) + " Or, x = " + Math.Round(result2, 2),
+                    Description = "AAA"
+                });
+                return solution;
             }
 
             int gcd1 = MathUtilities.GCD(new int[] {pairFactor[0], a});

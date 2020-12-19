@@ -78,6 +78,21 @@ namespace PlayMath.API.Data
             return user;
         }
 
+        public async Task<IEnumerable<User>> GetUsersAsync(UserParams userParams)
+        {
+            var users = _context.Users
+                .Include(u => u.Articles)
+                .Include(u => u.Comments)
+                .Include(u => u.Answers)
+                .Include(u => u.Questions)
+                .AsQueryable();
+            
+            users = TQuery.UserQuery(userParams, users);
+
+            return users;
+
+        }
+
         // Comment Repos
         public async Task<IEnumerable<Comment>> GetCommentsAsync(int articleId)
         {
