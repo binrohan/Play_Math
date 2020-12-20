@@ -23,6 +23,7 @@ export class QuestionsComponent implements OnInit {
     pageSize: 5,
     filter: '',
     categoryBy: 0,
+    byUserId: ''
   };
 
   filter = '';

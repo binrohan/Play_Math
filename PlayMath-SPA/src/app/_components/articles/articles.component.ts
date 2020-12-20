@@ -19,11 +19,12 @@ export class ArticlesComponent implements OnInit {
   totalPage = [];
   pageSize = 6;
 
-  articleParams: ArticleParams = {
+  articleParams = {
     pageIndex: 0,
     pageSize: this.pageSize,
     filter: '',
     categoryBy: 0,
+    byUserId: ''
   };
 
   constructor(private articleService: ArticleService, private router: Router) {}

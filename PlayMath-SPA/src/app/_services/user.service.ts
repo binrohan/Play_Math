@@ -28,7 +28,11 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'user/' + id);
   }
 
-  updateUser(id: string, user: User) {
-    return this.http.put<User>(this.baseUrl + 'user/' + id, user);
+  updateUser(id: string, model: {}) {
+    return this.http.put<User>(this.baseUrl + 'user/' + id, model);
+  }
+
+  updateUserRole(uId: string, roles: {}){
+    return this.http.post(this.baseUrl + 'user/editRoles/' + uId, roles);
   }
 }
