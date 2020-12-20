@@ -12,6 +12,11 @@ namespace PlayMath.API.Helpers
                 articles = articles.Where(a => a.Title.Contains(articleParams.Filter));
             }
 
+            if(!string.IsNullOrEmpty(articleParams.ByUserId))
+            {
+                articles = articles.Where(a => a.Writer.Id.Equals(articleParams.ByUserId));
+            }
+
             if(articleParams.CategoryBy != 0)
             {
                 articles = articles.Where(a => a.Category.Id == articleParams.CategoryBy);
@@ -31,6 +36,11 @@ namespace PlayMath.API.Helpers
                 questions = questions.Where(a => a.Title.Contains(questionParams.Filter));
             }
 
+            if(!string.IsNullOrEmpty(questionParams.ByUserId))
+            {
+                questions = questions.Where(a => a.QuestionBy.Id.Equals(questionParams.ByUserId));
+            }
+
             if(questionParams.CategoryBy != 0)
             {
                 questions = questions.Where(a => a.Category.Id == questionParams.CategoryBy);
@@ -46,6 +56,11 @@ namespace PlayMath.API.Helpers
         public static IQueryable<Answer> QuestionQuery (AnswerParams questionParams, IQueryable<Answer> questions)
         {
             questionParams.Length = questions.Count();
+
+            if(!string.IsNullOrEmpty(questionParams.ByUserId))
+            {
+                questions = questions.Where(a => a.AnsweredBy.Id.Equals(questionParams.ByUserId));
+            }
 
             questions = questions.Skip(questionParams.PageIndex*questionParams.PageSize).Take(questionParams.PageSize).Select(a => a);
 

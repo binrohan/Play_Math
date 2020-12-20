@@ -44,6 +44,7 @@ import { NewLinePipe } from './_pipes/newLine.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserComponent } from './_components/user/user.component';
 
 
 // Materials
@@ -76,7 +77,8 @@ export function tokenGetter() {
     ModeComponent,
     MedianComponent,
     QuadraticComponent,
-    TrinomialComponent
+    TrinomialComponent,
+    UserComponent
     // Material
     // MatListModule,
     // MatSelectModule

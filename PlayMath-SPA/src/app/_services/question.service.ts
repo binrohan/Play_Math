@@ -20,6 +20,7 @@ export class QuestionService {
 
     if (questionParams != null) {
       params = params.append('categoryBy', questionParams.categoryBy);
+      params = params.append('byUserId', questionParams.byUserId);
       params = params.append('filter', questionParams.filter);
       params = params.append('pageSize', questionParams.pageSize);
       params = params.append('pageIndex', questionParams.pageIndex);

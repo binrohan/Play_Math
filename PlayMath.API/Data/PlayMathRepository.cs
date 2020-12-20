@@ -85,11 +85,12 @@ namespace PlayMath.API.Data
                 .Include(u => u.Comments)
                 .Include(u => u.Answers)
                 .Include(u => u.Questions)
+                .Include(u => u.UserRoles)
                 .AsQueryable();
             
             users = TQuery.UserQuery(userParams, users);
 
-            return users;
+            return await users.ToListAsync();
 
         }
 
@@ -151,5 +152,7 @@ namespace PlayMath.API.Data
                 .Include(a => a.Question)
                 .FirstOrDefaultAsync(a => a.Id == id);
         }
+
+        // Others
     }
 }

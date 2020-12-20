@@ -19,6 +19,7 @@ import { QuestionComponent } from './_components/question/question.component';
 import { QuestionsComponent } from './_components/questions/questions.component';
 import { QuizComponent } from './_components/quiz/quiz.component';
 import { RegisterComponent } from './_components/register/register.component';
+import { UserComponent } from './_components/user/user.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent },
       { path: 'articles/new', component: ArticleFormComponent },
       { path: 'article/:id', component: ArticleComponent },
+      { path: 'user/:id', component: UserComponent },
       { path: '**', component: HomeComponent }, // it will change in future
     ],
   },

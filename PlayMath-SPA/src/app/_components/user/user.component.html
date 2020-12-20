@@ -1,0 +1,39 @@
+<div class="component container">
+  <h1>PROFILE</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="username">NAME</label><br />
+      <input
+        class="form-control"
+        type="text"
+        name="username"
+        id="username"
+        [value]="user.userName | titlecase"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="email">EMAIL</label><br />
+      <input
+        class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        [value]="user.email"
+        readonly
+      />
+    </div>
+    <div class="col-md-4">
+      <div class="ml-5">
+        <label for="role">Roles</label>
+        <p class="role"></p>
+        <div  *ngFor="let role of allRoles" class="form-check">
+          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="role" aria-label="...">
+          <label class="form-check-label" for="gridCheck">
+            {{role}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-danger btn-sm my-3">Update</button>
+</div>

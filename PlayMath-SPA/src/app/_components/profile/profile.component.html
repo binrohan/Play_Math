@@ -1,3 +1,329 @@
-<p>
-  profile works!
-</p>
+<div class="component container">
+  <h1>PROFILE</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <label for="username">NAME</label><br />
+      <input
+        class="form-control"
+        type="text"
+        name="username"
+        id="username"
+        [value]="user.userName | titlecase"
+      />
+    </div>
+    <div class="col-md-4">
+      <label for="email">EMAIL</label><br />
+      <input
+        class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        [value]="user.email"
+        readonly
+      />
+    </div>
+    <div class="col-md-4">
+      <div *ngIf="user.userRoles?.length > 0">
+        <label for="role">Roles</label>
+        <p class="role" *ngFor="let role of user.userRoles">{{ role }}</p>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-danger btn-sm my-3">Update</button>
+  <hr />
+  <div>
+    <div class="d-flex justify-content-between">
+      <h2>List of Users</h2>
+      <form
+        class="form-group form-inline mb-0"
+        #searchForm="ngForm"
+        (ngSubmit)="search()"
+      >
+        <label for="inputsearch" class="sr-only">search address</label>
+        <input
+          type="text"
+          id="inputsearch"
+          class="form-control"
+          placeholder="search"
+          name="search"
+          required
+          [(ngModel)]="params.filter"
+        />
+        <button
+          class="text-muted cursor btn mx-1"
+          type="submit"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="mx-3"
+            role="img"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <title>Search</title>
+            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+            <path d="M21 21l-5.2-5.2"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th style="font-weight: 100" scope="col">User Name</th>
+          <th style="font-weight: 100" scope="col">Roles</th>
+          <th style="font-weight: 100" scope="col">Assign Roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{ u.userName }}</td>
+          <td>{{ u.email }}</td>
+          <td *ngFor="let role of u.userRoles">{{ role }} &nbsp; &nbsp;</td>
+          <td><a class="cursor" [routerLink]="['/user/' + u.id]">edit</a></td>
+        </tr>
+      </tbody>
+      <div *ngIf="totalPage.length > 1">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            [ngClass]="{ disabled: params.pageIndex === 0 }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChange(params.pageIndex - 1)"
+              >Previous</a
+            >
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let index of totalPage"
+            [ngClass]="{ active: index === params.pageIndex }"
+          >
+            <a class="page-link cursor" (click)="onPageChange(index)">{{
+              index + 1
+            }}</a>
+          </li>
+          <li
+            class="page-item"
+            [ngClass]="{
+              disabled: params.pageIndex === totalPage[totalPage.length - 1]
+            }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChange(params.pageIndex + 1)"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </div>
+    </table>
+  </div>
+  <hr />
+  <div>
+    <div class="d-flex justify-content-between">
+      <h2>List of Articles</h2>
+      <form
+        class="form-group form-inline mb-0"
+        #searchForm2="ngForm"
+        (ngSubmit)="searchArticle()"
+      >
+        <label for="inputsearch" class="sr-only">search</label>
+        <input
+          type="text"
+          id="inputsearch2"
+          class="form-control"
+          placeholder="search"
+          name="search"
+          required
+          [(ngModel)]="paramsArticle.filter"
+        />
+        <button
+          class="text-muted cursor btn mx-1"
+          type="submit"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="mx-3"
+            role="img"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <title>Search</title>
+            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+            <path d="M21 21l-5.2-5.2"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th style="font-weight: 100" scope="col">Article Name</th>
+          <th style="font-weight: 100" scope="col">Conent</th>
+          <th style="font-weight: 100" scope="col">Date</th>
+          <th style="font-weight: 100" scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of articles">
+          <td>{{ u.title }}</td>
+          <td>{{ u.body | summary: 10 }}</td>
+          <td >{{ u.published | date:'dd MMMM yyyy' }}</td>
+          <td><a class="cursor" [routerLink]="['/article/'+u.id ]">read</a></td>
+        </tr>
+      </tbody>
+      <div *ngIf="totalPageArticle.length > 1">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            [ngClass]="{ disabled: paramsArticle.pageIndex === 0 }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChangeArticle(paramsArticle.pageIndex - 1)"
+              >Previous</a
+            >
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let index of totalPageArticle"
+            [ngClass]="{ active: index === paramsArticle.pageIndex }"
+          >
+            <a class="page-link cursor" (click)="onPageChangeArticle(index)">{{
+              index + 1
+            }}</a>
+          </li>
+          <li
+            class="page-item"
+            [ngClass]="{
+              disabled: paramsArticle.pageIndex === totalPageArticle[totalPageArticle.length - 1]
+            }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChangeArticle(paramsArticle.pageIndex + 1)"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </div>
+    </table>
+  </div>
+  <hr />
+  <div>
+    <div class="d-flex justify-content-between">
+      <h2>List of Questions</h2>
+      <form
+        class="form-group form-inline mb-0"
+        #searchForm3="ngForm"
+        (ngSubmit)="searchQuestion()"
+      >
+        <label for="inputsearch" class="sr-only">search</label>
+        <input
+          type="text"
+          id="inputsearch3"
+          class="form-control"
+          placeholder="search"
+          name="search"
+          required
+          [(ngModel)]="paramsQuestion.filter"
+        />
+        <button
+          class="text-muted cursor btn mx-1"
+          type="submit"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            class="mx-3"
+            role="img"
+            viewBox="0 0 24 24"
+            focusable="false"
+          >
+            <title>Search</title>
+            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+            <path d="M21 21l-5.2-5.2"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th style="font-weight: 100" scope="col">Question</th>
+          <th style="font-weight: 100" scope="col">Solved</th>
+          <th style="font-weight: 100" scope="col">Date</th>
+          <th style="font-weight: 100" scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of questions; let i = index">
+          <td>{{ u.title }}</td>
+          <td>{{ u.isSolved }}</td>
+          <td>{{ u.postDate | date:'dd MMMM yyyy'}}</td>
+          <td><a class="cursor" [routerLink]="['/question/' + u.id]" >visit</a></td>
+        </tr>
+      </tbody>
+      <div *ngIf="totalPageQuestion.length > 1">
+        <ul class="pagination">
+          <li
+            class="page-item"
+            [ngClass]="{ disabled: paramsQuestion.pageIndex === 0 }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChangeQuestion(paramsQuestion.pageIndex - 1)"
+              >Previous</a
+            >
+          </li>
+          <li
+            class="page-item"
+            *ngFor="let index of totalPageQuestion"
+            [ngClass]="{ active: index === paramsQuestion.pageIndex }"
+          >
+            <a class="page-link cursor" (click)="onPageChangeQuestion(index)">{{
+              index + 1
+            }}</a>
+          </li>
+          <li
+            class="page-item"
+            [ngClass]="{
+              disabled: paramsQuestion.pageIndex === totalPageQuestion[totalPageQuestion.length - 1]
+            }"
+          >
+            <a
+              class="page-link cursor"
+              (click)="onPageChangeQuestion(paramsQuestion.pageIndex + 1)"
+              >Next</a
+            >
+          </li>
+        </ul>
+      </div>
+    </table>
+  </div>
+</div>

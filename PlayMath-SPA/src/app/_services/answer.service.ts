@@ -20,6 +20,7 @@ export class AnswerService {
     let params = new HttpParams();
 
     if (questionParams != null) {
+      params = params.append('byUserId', questionParams.byUserId);
       params = params.append('pageSize', questionParams.pageSize);
       params = params.append('pageIndex', questionParams.pageIndex);
     }

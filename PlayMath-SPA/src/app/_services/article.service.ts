@@ -25,6 +25,7 @@ export class ArticleService {
 
     if (articleParams != null) {
       params = params.append('categoryBy', articleParams.categoryBy);
+      params = params.append('byUserId', articleParams.byUserId);
       params = params.append('filter', articleParams.filter);
       params = params.append('pageSize', articleParams.pageSize);
       params = params.append('pageIndex', articleParams.pageIndex);
