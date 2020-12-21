@@ -5,7 +5,7 @@ import { UserService } from 'src/app/_services/user.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  styleUrls: ['./user.component.scss'],
 })
 export class UserComponent implements OnInit {
   userId: string;
@@ -15,31 +15,40 @@ export class UserComponent implements OnInit {
   userRoles: any[];
   isRoleChanged = false;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.userId = (this.route.snapshot.paramMap.get('id'));
+    this.userId = this.route.snapshot.paramMap.get('id');
     this.getUser(this.userId);
-    this.roles = this.user.roles;
   }
 
   getUser(id: string) {
     this.userService.getUser(id).subscribe(
       (data) => {
         this.user = data;
+        if (this.user.roles) {
+          console.log('Here');
+          this.roles = this.user.roles;
+        }
+        console.log(this.roles);
         console.log(this.user);
       },
       (error) => console.log('User failed to load')
     );
   }
 
-  update(){
+  update() {
     this.isRoleChanged = false;
     const newRoleSet = { roleNames: this.roles };
-    this.userService.updateUserRole(this.user.id, newRoleSet).subscribe(() => {
-      this.getUser(this.route.snapshot.paramMap.get('id'));
-    }, err => {
-    });
+    this.userService.updateUserRole(this.user.id, newRoleSet).subscribe(
+      () => {
+        this.getUser(this.route.snapshot.paramMap.get('id'));
+      },
+      (err) => {}
+    );
   }
 
   onSelect(e, value) {
@@ -54,5 +63,4 @@ export class UserComponent implements OnInit {
       this.roles.splice(index, 1);
     }
   }
-
 }

@@ -28,7 +28,7 @@
         <label for="role">Roles</label>
         <p class="role"></p>
         <div  *ngFor="let role of allRoles" class="form-check">
-          <input class="form-check-input position-static" #checkboxValue (change)='onSelect($event, checkboxValue)' type="checkbox" id="{{role}}" value="{{role}}">
+          <input class="form-check-input position-static" #checkboxValue (change)='onSelect($event, checkboxValue)' [checked]="roles.includes(role)" type="checkbox" id="{{role}}" value="{{role}}">
           <label class="form-check-label" for="{{role}}">
             {{role}}
           </label>
