@@ -46,6 +46,7 @@ namespace PlayMath.API.Helpers
             CreateMap<AnswerToUpdateDto, Answer>();
 
             CreateMap<UserToUpdateDto, User>();
+            CreateMap<User, UserToReturnDto>();
                 
         }
     }

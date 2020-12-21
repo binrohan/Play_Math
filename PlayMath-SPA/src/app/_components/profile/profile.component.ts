@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
   getUsers() {
     this.userService.getUsers(this.params).subscribe(
       (data) => {
-        this.users = data;
+        this.users = data.users;
         this.pageCalc(data.length, 'u');
         console.log(this.users);
       },

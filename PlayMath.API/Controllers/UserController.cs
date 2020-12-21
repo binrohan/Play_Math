@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -28,16 +29,29 @@ namespace PlayMath.API.Controllers {
 
         [HttpGet ("{id}")]
         public async Task<IActionResult> GetUser (string id) {
-            var user = await _repo.GetUserAsync (id);
+            var userFromRepo = await _repo.GetUserAsync (id);
+
+            var user = _mapper.Map<UserToReturnDto>(userFromRepo);
+
+             user.Roles = await _userManager.GetRolesAsync(userFromRepo);
 
             return Ok (user);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers ([FromQuery] UserParams userParams) {
-            var users = await _repo.GetUsersAsync (userParams);
+            var usersFromRepo = await _repo.GetUsersAsync (userParams);
 
-            return Ok (users);
+            var users = _mapper.Map<IEnumerable<UserToReturnDto>>(usersFromRepo);
+
+            foreach (var user in users)
+            {
+                var userTemp = await _userManager.FindByEmailAsync(user.Email);
+                var roles = await _userManager.GetRolesAsync(userTemp);
+                user.Roles = roles;
+            }
+
+            return Ok (new {users, userParams.Length});
         }
 
         [HttpPut ("{id}")]

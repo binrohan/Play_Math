@@ -23,12 +23,12 @@
       />
     </div>
     <div class="col-md-4">
-      <div *ngIf="user.userRoles?.length > 0">
+      <div *ngIf="user.roles?.length > 0">
         <label for="role">Roles</label>
-        <p class="role" *ngFor="let role of user.userRoles">{{ role }}</p>
+        <p class="role" *ngFor="let role of user.roles">{{ role | json}}</p>
       </div>
     </div>
-  </div>
+</div>
   <button class="btn btn-danger btn-sm my-3" (click)="updateUser()">Update</button>
   <hr />
   <div>
@@ -85,10 +85,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let u of users">
-          <td>{{ u.userName }}</td>
+          <td class="cursor" style="color: blue;" [routerLink]="['/user/' + u.id]">{{ u.userName }}</td>
           <td>{{ u.email }}</td>
-          <td *ngFor="let role of u.userRoles">{{ role }} &nbsp; &nbsp;</td>
-          <td><a class="cursor" [routerLink]="['/user/' + u.id]">edit</a></td>
+          <td><span *ngFor="let role of u.roles">{{role}} </span></td>
         </tr>
       </tbody>
       <div *ngIf="totalPage.length > 1">

@@ -28,7 +28,7 @@
         <label for="role">Roles</label>
         <p class="role"></p>
         <div  *ngFor="let role of allRoles" class="form-check">
-          <input class="form-check-input position-static" #checkboxValue (change)='onSelect($event, checkboxValue)' type="checkbox" id="{{role}}" value="{{role}}" aria-label="...">
+          <input class="form-check-input position-static" #checkboxValue (change)='onSelect($event, checkboxValue)' type="checkbox" id="{{role}}" value="{{role}}">
           <label class="form-check-label" for="{{role}}">
             {{role}}
           </label>
@@ -37,4 +37,4 @@
     </div>
   </div>
   <button class="btn btn-danger btn-sm my-3" (click)="update()">Update</button>
-</div>
+</div>  

@@ -10,8 +10,8 @@ import { UserService } from 'src/app/_services/user.service';
 export class UserComponent implements OnInit {
   userId: string;
   user: any = {};
-  allRoles = ['Admin', 'Writter', 'Reader'];
-  roles: string[] = [];
+  allRoles = ['Admin', 'Writer', 'Reader'];
+  roles: any[] = [];
   userRoles: any[];
   isRoleChanged = false;
 
@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userId = (this.route.snapshot.paramMap.get('id'));
     this.getUser(this.userId);
+    this.roles = this.user.roles;
   }
 
   getUser(id: string) {
