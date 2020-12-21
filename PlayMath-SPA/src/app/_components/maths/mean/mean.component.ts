@@ -42,6 +42,7 @@ export class MeanComponent implements OnInit {
     this.mathService.getMode(this.mode).subscribe(
       (data) => {
         this.solution = data;
+        this.sum = this.solution.numbers.reduce((a, b) => a + b, 0);
         this.success = true;
       },
       (error) => {
