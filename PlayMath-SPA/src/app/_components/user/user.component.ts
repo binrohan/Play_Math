@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -17,7 +17,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -62,5 +63,17 @@ export class UserComponent implements OnInit {
       const index = this.roles.indexOf(value.value);
       this.roles.splice(index, 1);
     }
+  }
+
+  deleteUser(){
+    if(!confirm('Are You Sure?')){
+      return false;
+    }
+    this.userService.deleteUser(this.userId, this.userId).subscribe(() => {
+      console.log('User Removed');
+      this.router.navigate(['/profile']);
+    }, (error) => {
+      console.log('User Removed Failed');
+    });
   }
 }

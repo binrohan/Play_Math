@@ -50,6 +50,7 @@
         <a
           class="btn btn-sm btn-outline-primary"
           [routerLink]="['/articles/new']"
+          *appHasRole="['Admin']"
           >+</a
         >
       </div>

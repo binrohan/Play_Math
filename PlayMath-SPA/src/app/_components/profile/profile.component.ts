@@ -155,4 +155,12 @@ export class ProfileComponent implements OnInit {
       console.log('Error updating user');
     });
   }
+
+  deleteUser(){
+    this.userService.deleteUser(this.userId, this.authService.decodedToken.nameid).subscribe(() => {
+      console.log('User Removed');
+    }, (error) => {
+      console.log('User Removed Failed');
+    });
+  }
 }

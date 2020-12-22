@@ -35,4 +35,8 @@ export class UserService {
   updateUserRole(uId: string, roles: {}){
     return this.http.post(this.baseUrl + 'user/editRoles/' + uId, roles);
   }
+
+  deleteUser(uId: string, aId: string){
+    return this.http.delete(this.baseUrl + 'user/' + uId + '/' + aId);
+  }
 }

@@ -91,5 +91,22 @@ namespace PlayMath.API.Controllers {
 
             return Ok (await _userManager.GetRolesAsync (user));
         }
+
+        [HttpDelete("{uId}/{aId}")]
+        public async Task<IActionResult> DeleteUser(string uId, string aId)
+        {
+            var userFromRepo =  await _userManager.FindByIdAsync(uId);
+            var admin = await _repo.GetUserAsync(aId);
+            var adminRoles = await _userManager.GetRolesAsync(admin);
+            if(aId.Equals(uId) || adminRoles.Contains("Admin"))
+            {
+                _repo.Delete(userFromRepo);
+
+                if(await _repo.SaveAll())
+                return NoContent();
+            }
+
+            throw new Exception (userFromRepo.UserName+" unable to remove");
+        }
     }
 }

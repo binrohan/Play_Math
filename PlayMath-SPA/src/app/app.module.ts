@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Others
 import { AppRoutingModule } from './app-routing.module';
@@ -37,7 +37,6 @@ import { MedianComponent } from './_components/maths/median/median.component';
 import { QuadraticComponent } from './_components/maths/quadratic/quadratic.component';
 import { TrinomialComponent } from './_components/maths/trinomial/trinomial.component';
 
-
 // Pipes
 import { SummaryPipe } from './_pipes/summary.pipe';
 import { NewLinePipe } from './_pipes/newLine.pipe';
@@ -45,7 +44,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './_components/user/user.component';
-
+import { AuthGuard } from './_guards/auth.guard';
+import { HasRoleDirective } from './_directives/hasRole.directive';
 
 // Materials
 // import {MatListModule} from '@angular/material/list';
@@ -78,7 +78,8 @@ export function tokenGetter() {
     MedianComponent,
     QuadraticComponent,
     TrinomialComponent,
-    UserComponent
+    UserComponent,
+    HasRoleDirective
     // Material
     // MatListModule,
     // MatSelectModule
@@ -91,17 +92,15 @@ export function tokenGetter() {
     HttpClientModule,
     FontAwesomeModule,
 
-
     JwtModule.forRoot({
       config: {
-         tokenGetter,
-         allowedDomains: ['localhost:5000'],
-         disallowedRoutes: ['localhost:5000/api/auth']
-      }
-   }),
+        tokenGetter,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth'],
+      },
+    }),
 
-
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,
@@ -109,7 +108,8 @@ export function tokenGetter() {
     ArticleService,
     QuizService,
     QuestionService,
+    AuthGuard,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
