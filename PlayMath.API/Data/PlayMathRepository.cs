@@ -154,5 +154,11 @@ namespace PlayMath.API.Data
         }
 
         // Others
+
+        // Quiz
+        public async Task<QuizQuestion> GetQuizQuestionAsync(int id)
+        {
+            return await _context.QuizQuestions.FirstOrDefaultAsync(q => q.Id == id);
+        }
     }
 }

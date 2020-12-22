@@ -6,6 +6,7 @@ import { Question } from 'src/app/_models/Question';
 import { ArticleService } from 'src/app/_services/article.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { QuestionService } from 'src/app/_services/question.service';
+import { QuizService } from 'src/app/_services/quiz.service';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -45,12 +46,18 @@ export class ProfileComponent implements OnInit {
   newCateName: string;
   categories: Category[];
 
+  quiz = {
+    questionDto: '',
+    optionDto: [{answer: '', isCorrect: false}, {answer: '', isCorrect: false}, {answer: '', isCorrect: false}, {answer: '', isCorrect: false}]
+  }
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private articleService: ArticleService,
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private quizService: QuizService
   ) {}
 
   ngOnInit() {
@@ -210,5 +217,15 @@ export class ProfileComponent implements OnInit {
         console.log('Failed to get categories');
       }
     );
+  }
+
+
+  addQuiz(){
+    console.log(this.quiz);
+    this.quizService.addQuiz(this.quiz).subscribe(() => {
+      console.log('Question added to the database');
+    }, (error) => {
+      console.log('Question failed to add');
+    })
   }
 }

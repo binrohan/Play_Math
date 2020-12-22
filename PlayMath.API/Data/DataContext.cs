@@ -18,6 +18,9 @@ namespace PlayMath.API.Data
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
 
+        public DbSet<QuizQuestion> QuizQuestions { get; set; }
+        public DbSet<Option> Options { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder){
             base.OnModelCreating(builder);
             

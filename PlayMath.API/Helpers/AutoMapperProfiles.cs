@@ -49,6 +49,11 @@ namespace PlayMath.API.Helpers
             CreateMap<User, UserToReturnDto>();
 
             CreateMap<CategoryToCreate, ArticleCategory>();
+
+
+            // Quiz
+            CreateMap<QuizDto, QuizQuestion>();
+            CreateMap<QuizDto, Option>();
                 
         }
     }

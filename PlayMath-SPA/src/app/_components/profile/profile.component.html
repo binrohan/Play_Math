@@ -53,6 +53,108 @@
       </button>
     </form>
   </div>
+  <div *appHasRole="['Writer']">
+    <h2>Add new quiz question</h2>
+    <form class="form-group" #quizForm="ngForm" (ngSubmit)="addQuiz()">
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Question</div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          id="inlineFormInputGroupUsername5"
+          name="quizQuestion"
+          [(ngModel)]="quiz.questionDto"
+          required
+        />
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">A</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="option1"
+              name="option1"
+              [(ngModel)]="quiz.optionDto[0].answer"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <input [(ngModel)]="quiz.optionDto[0].isCorrect" type="checkbox" name="op1">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">B</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="option2"
+              name="option2"
+              required
+              [(ngModel)]="quiz.optionDto[1].answer"
+            />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <input [(ngModel)]="quiz.optionDto[1].isCorrect" type="checkbox" name="op2">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">C</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="option3"
+              name="option3"
+              required
+              [(ngModel)]="quiz.optionDto[2].answer"
+            />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <input [(ngModel)]="quiz.optionDto[2].isCorrect" type="checkbox" name="op3">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">D</div>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              id="option4"
+              name="optionD"
+              required
+              [(ngModel)]="quiz.optionDto[3].answer"
+            />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <input [(ngModel)]="quiz.optionDto[3].isCorrect" type="checkbox" name="op4">
+        </div>
+      </div>
+      
+      <button type="submit" [disabled]="!quizForm.valid" class="btn btn-primary mb-2">
+        add
+      </button>
+    </form>
+  </div>
   <div *appHasRole="['Admin']">
     <div class="d-flex justify-content-between">
       <h2>List of Users</h2>
