@@ -11,8 +11,18 @@ export class NavbarComponent implements OnInit {
 
   @Input() user: string;
 
-  constructor(public authService: AuthService, private route: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+  }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
+    this.router.navigate(['']);
+  }
+  loggedIn() {
+    return this.authService.loggedIn();
   }
 }

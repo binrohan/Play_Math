@@ -5,16 +5,16 @@
     <form class="form-inline">
       <div class="input-group mb-2 mr-sm-2">
         <div class="input-group-prepend">
-          <div class="input-group-text">Numbers = </div>
+          <div class="input-group-text">Numbers =</div>
         </div>
         <input
-        type="text"
-        class="form-control"
-        id="inlineFormInputGroupUsername2 numbers"
-        name="numbers"
-        [placeholder] = "placeholder"
-        [(ngModel)]="model.numbers"
-        (keypress) = "checkInputChar($event)"
+          type="text"
+          class="form-control"
+          id="inlineFormInputGroupUsername2 numbers"
+          name="numbers"
+          [placeholder]="placeholder"
+          [(ngModel)]="model.numbers"
+          (keypress)="checkInputChar($event)"
         />
       </div>
 
@@ -27,18 +27,35 @@
   <div>
     <p *ngIf="isSolveClicked">
       Your numbers are :
-      <span class="mode__review-equation">{{model.numbers}}</span>
+      <span class="mode__review-equation">{{ model.numbers }}</span>
     </p>
     <section class="solved" *ngIf="isSolveClicked && success">
       <div>
         <p class="solved__title">Mean: The mean value is the average value</p>
         <div>
           <p class="solved__equation mb-2">Sum of the numbers:</p>
-          <p class="solved__equation mb-2"> <span *ngFor="let number of solution.numbers; let i = index"><span>{{number}}<span class="mx-2" *ngIf="i !== solution.numbers.length - 1">+</span></span></span> = {{sum}}</p>
-          <p class="solved__equation mb-4">Average: sum/number of values = {{sum}}/{{solution.numbers.length}} = {{sum/solution.numbers.length | number: '1.1-2'}}</p>
+          <p class="solved__equation mb-2">
+            <span *ngFor="let number of solution.numbers; let i = index"
+              ><span
+                >{{ number
+                }}<span class="mx-2" *ngIf="i !== solution.numbers.length - 1"
+                  >+</span
+                ></span
+              ></span
+            >
+            = {{ sum }}
+          </p>
+          <p class="solved__equation mb-4">
+            Average: sum/number of values = {{ sum }}/{{
+              solution.numbers.length
+            }}
+            = {{ sum / solution.numbers.length | number: "1.1-2" }}
+          </p>
         </div>
         <div>
-          <p class="solved__result">Result: {{sum/solution.numbers.length | number: '1.1-2'}}</p>
+          <p class="solved__result">
+            Result: {{ sum / solution.numbers.length | number: "1.1-2" }}
+          </p>
         </div>
       </div>
     </section>

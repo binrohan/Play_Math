@@ -10,19 +10,25 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using PlayMath.API.Data;
 using PlayMath.API.Dtos;
 using PlayMath.API.Models;
 
-namespace PlayMath.API.Controllers {
-    [Route ("api/[controller]")]
+namespace PlayMath.API.Controllers
+{
+    [Route("api/[controller]")]
     [ApiController]
     [AllowAnonymous]
-    public class AuthController : ControllerBase {
+    public class AuthController : ControllerBase
+    {
         private readonly IConfiguration _config;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AuthController (IConfiguration config, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager) {
+        private readonly IPlayMathRepository _repo;
+        public AuthController(IConfiguration config, IMapper mapper, UserManager<User> userManager, SignInManager<User> signInManager, IPlayMathRepository repo)
+        {
+            _repo = repo;
             _signInManager = signInManager;
             _userManager = userManager;
             _mapper = mapper;
@@ -32,14 +38,14 @@ namespace PlayMath.API.Controllers {
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
-        {   
+        {
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
-            
+
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
-        
+
             var userToReturn = _mapper.Map<UserForDetailedDto>(userToCreate);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return Ok();
             }
@@ -49,14 +55,15 @@ namespace PlayMath.API.Controllers {
 
         [HttpPost("login")]
         public async Task<IActionResult> login(UserForLoginDto userForLogin)
-        {   System.Console.WriteLine();
+        {
+            System.Console.WriteLine();
             var user = await _userManager.FindByEmailAsync(userForLogin.Email);
             var result = await _signInManager.CheckPasswordSignInAsync(user, userForLogin.Password, false);
-            
-            if(result.Succeeded)
+
+            if (result.Succeeded)
             {
                 var appUser = _mapper.Map<UserForDetailedDto>(user);
-                return Ok( new
+                return Ok(new
                 {
                     token = GenerateJwtToken(user).Result,
                     user = appUser
@@ -67,7 +74,7 @@ namespace PlayMath.API.Controllers {
 
         private async Task<string> GenerateJwtToken(User user)
         {
-            var claims = new List<Claim> { 
+            var claims = new List<Claim> {
                 new Claim (ClaimTypes.NameIdentifier, user.Id.ToString ()),
                 new Claim (ClaimTypes.Name, user.UserName)
             };

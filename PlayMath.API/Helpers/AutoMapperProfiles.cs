@@ -47,6 +47,8 @@ namespace PlayMath.API.Helpers
 
             CreateMap<UserToUpdateDto, User>();
             CreateMap<User, UserToReturnDto>();
+
+            CreateMap<CategoryToCreate, ArticleCategory>();
                 
         }
     }

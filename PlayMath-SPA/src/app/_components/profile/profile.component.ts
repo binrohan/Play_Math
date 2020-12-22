@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Article } from 'src/app/_models/Article';
+import { Category } from 'src/app/_models/Category';
 import { Question } from 'src/app/_models/Question';
 import { ArticleService } from 'src/app/_services/article.service';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -39,14 +41,23 @@ export class ProfileComponent implements OnInit {
     filter: '',
     categoryBy: 0
   };
+
+  newCateName: string;
+  categories: Category[];
+
   constructor(
     private authService: AuthService,
     private userService: UserService,
     private articleService: ArticleService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    if(!this.loggedIn()){
+      this.router.navigate(['/login']);
+      return false;
+    }
     this.getUser(this.authService.decodedToken.nameid);
     this.getUsers();
     this.userId = this.authService.decodedToken.nameid;
@@ -54,6 +65,11 @@ export class ProfileComponent implements OnInit {
     this.paramsQuestion.byUserId = this.userId;
     this.getArticles();
     this.getQuestion();
+    this.getCategories();
+  }
+
+  loggedIn() {
+    return this.authService.loggedIn();
   }
 
   getUser(id: string) {
@@ -162,5 +178,37 @@ export class ProfileComponent implements OnInit {
     }, (error) => {
       console.log('User Removed Failed');
     });
+  }
+
+  removeCate(id: number){
+    this.articleService.removeCate(id).subscribe(()=>{
+      console.log('Removed');
+      this.getCategories();
+    }, (error) => {
+      console.log('Removed failed');
+    })
+  }
+
+  addCate(){
+    if(this.newCateName === undefined || this.newCateName === '')
+      return false;
+
+    this.articleService.addCate({category: this.newCateName}).subscribe(() => {
+      console.log('Category Added');
+      this.getCategories();
+    }, (error)=> {
+      console.log('Category add failed');
+    })
+  }
+
+  getCategories() {
+    this.articleService.getCategories().subscribe(
+      (data) => {
+        this.categories = data;
+      },
+      (error) => {
+        console.log('Failed to get categories');
+      }
+    );
   }
 }

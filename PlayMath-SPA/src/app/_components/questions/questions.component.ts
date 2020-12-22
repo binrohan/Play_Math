@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Category } from 'src/app/_models/Category';
 import { Question } from 'src/app/_models/Question';
 import { ArticleService } from 'src/app/_services/article.service';
+import { AuthService } from 'src/app/_services/auth.service';
 import { QuestionService } from 'src/app/_services/question.service';
 
 @Component({
@@ -28,7 +29,7 @@ export class QuestionsComponent implements OnInit {
 
   filter = '';
 
-  constructor(private articleService: ArticleService, private questionService: QuestionService, private router: Router) { }
+  constructor(private articleService: ArticleService, private questionService: QuestionService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.getCategories();
@@ -57,6 +58,10 @@ export class QuestionsComponent implements OnInit {
         console.log('Failed to get Question');
       }
     );
+  }
+
+  loggedIn() {
+    return this.authService.loggedIn();
   }
 
   onCategoryChange(category: Category){

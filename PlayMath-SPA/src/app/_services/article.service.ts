@@ -37,4 +37,12 @@ export class ArticleService {
   getArticle(id: number) {
     return this.http.get<Article>(this.baseUrl + '/' + id);
   }
+
+  addCate(model: {}){
+    return this.http.post(this.baseUrl + '/addCate', model);
+  }
+
+  removeCate(id: number){
+    return this.http.delete(this.baseUrl + '/cate/' + id);
+  }
 }

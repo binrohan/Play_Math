@@ -20,6 +20,7 @@ import { QuestionsComponent } from './_components/questions/questions.component'
 import { QuizComponent } from './_components/quiz/quiz.component';
 import { RegisterComponent } from './_components/register/register.component';
 import { UserComponent } from './_components/user/user.component';
+import { AuthService } from './_services/auth.service';
 
 const routes: Routes = [
   {
@@ -38,12 +39,12 @@ const routes: Routes = [
       { path: 'maths/quadratic', component: QuadraticComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'questions', component: QuestionsComponent },
-      { path: 'question/new', component: QuestionFormComponent },
+      { path: 'question/new', component: QuestionFormComponent, data: { roles: ['Admin', 'Reader', 'Writer'] } },
       { path: 'question/:id', component: QuestionComponent },
       { path: 'quiz', component: QuizComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'articles/new', component: ArticleFormComponent },
+      { path: 'articles/new', component: ArticleFormComponent, data: { roles: ['Admin', 'Writer'] } },
       { path: 'article/:id', component: ArticleComponent },
       { path: 'user/:id', component: UserComponent },
       { path: '**', component: HomeComponent }, // it will change in future

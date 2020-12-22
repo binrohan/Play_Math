@@ -22,7 +22,7 @@
     <div class="col-md-10">
       <div class="mb-3 d-flex justify-content-between">
         <h2>Question</h2>
-        <button class="btn btn-primary" [routerLink]="['/question/new']">
+        <button class="btn btn-primary" [routerLink]="loggedIn()? ['/question/new']:['/login']">
           Post New Question
         </button>
       </div>

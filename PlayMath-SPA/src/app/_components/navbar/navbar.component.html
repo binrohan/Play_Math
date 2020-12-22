@@ -32,7 +32,7 @@
             >
           </li>
           <li class="nav-item active">
-            <a class="nav-link" [routerLink]="['quiz']"
+            <a class="nav-link" [routerLink]="loggedIn()?['quiz']:['/login']"
               >Quiz</a
             >
           </li>
@@ -42,6 +42,13 @@
             <li class="nav-item active">
               <a class="nav-link" [routerLink]="['profile']"
                 >{{user | titlecase}}</a
+              >
+            </li>
+            <li class="nav-item active ml-5">
+              <a class="nav-link cursor"
+              (click)="logout()"
+              *ngIf="loggedIn()"
+                >{{'Log Out'}}</a
               >
             </li>
           </ul>

@@ -122,5 +122,26 @@ namespace PlayMath.API.Controllers {
 
             return Ok(category);
         }
+
+        [HttpPost("addCate")]
+        public async Task<IActionResult> AddCategory(CategoryToCreate categoryToCreate)
+        {
+            var newCategory = _mapper.Map<ArticleCategory>(categoryToCreate);
+            _repo.Add(newCategory);
+            if(await _repo.SaveAll())
+                return NoContent();
+            throw new Exception ("Can not be Created");
+        }
+
+        [HttpDelete("cate/{id}")]
+        public async Task<IActionResult> RemoveCategory(int id){
+            var cateFromRepo = await _repo.GetCategoryAsync(id);
+            _repo.Delete(cateFromRepo);
+            if (await _repo.SaveAll ())
+            return NoContent ();
+            throw new Exception ("Delete failed");
+
+        }
+
     }
 }

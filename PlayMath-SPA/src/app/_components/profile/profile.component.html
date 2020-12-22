@@ -31,8 +31,29 @@
 </div>
   <button class="btn btn-warning btn-sm my-3" (click)="updateUser()">Update</button>
   <button class="btn btn-danger btn-sm m-3" (click)="deleteUser()">Delete Account</button>
-  <hr />
-  <div>
+  <div *appHasRole="['Admin']">
+    <hr />
+    <h2>Categories</h2>
+    <p *ngFor="let c of categories">{{c.category}} &nbsp; <span (click)="removeCate(c.id)" class="text-danger cursor">remove</span></p>
+    <form class="form-inline">
+      <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">New Category</div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          id="inlineFormInputGroupUsername2 numbers"
+          name="numbers"
+          [(ngModel)]="newCateName"
+        />
+      </div>
+      <button type="submit" (click)="addCate()" class="btn btn-primary mb-2">
+        add
+      </button>
+    </form>
+  </div>
+  <div *appHasRole="['Admin']">
     <div class="d-flex justify-content-between">
       <h2>List of Users</h2>
       <form
@@ -128,8 +149,9 @@
       </div>
     </table>
   </div>
-  <hr />
-  <div>
+  
+  <div *appHasRole="['Writer']">
+    <hr />
     <div class="d-flex justify-content-between">
       <h2>List of Articles</h2>
       <form
@@ -227,8 +249,9 @@
       </div>
     </table>
   </div>
-  <hr />
+  
   <div>
+    <hr />
     <div class="d-flex justify-content-between">
       <h2>List of Questions</h2>
       <form
