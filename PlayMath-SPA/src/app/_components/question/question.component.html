@@ -100,6 +100,7 @@
       placeholder="comment"
       name="comment"
       required
+      [disabled]="!loggedIn()"
       [(ngModel)]="answer.body"
     />
     <button type="submit" [disabled]="!commentForm.valid" class="btn btn-primary my-2">Post</button>

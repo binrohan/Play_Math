@@ -87,4 +87,7 @@ export class ArticleComponent implements OnInit {
       this.likeCount++;
     }
   }
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
 }

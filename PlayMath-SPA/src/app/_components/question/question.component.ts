@@ -133,4 +133,7 @@ export class QuestionComponent implements OnInit {
       this.question = data;
     });
   }
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
 }

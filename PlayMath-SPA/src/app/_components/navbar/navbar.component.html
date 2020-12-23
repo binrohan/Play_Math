@@ -41,7 +41,7 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" [routerLink]="['profile']"
-                >{{user | titlecase}}</a
+                >{{user || 'LogIn' | titlecase}}</a
               >
             </li>
             <li class="nav-item active ml-5">

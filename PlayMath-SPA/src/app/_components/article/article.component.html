@@ -33,6 +33,7 @@
       placeholder="comment"
       name="comment"
       required
+      [disabled]="!loggedIn()"
       [(ngModel)]="model.commentText"
     />
     <button
