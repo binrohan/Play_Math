@@ -65,7 +65,7 @@
           class="form-control"
           id="inlineFormInputGroupUsername5"
           name="quizQuestion"
-          [(ngModel)]="quiz.questionDto"
+          [(ngModel)]="quiz.question"
           required
         />
       </div>
@@ -80,13 +80,13 @@
               class="form-control"
               id="option1"
               name="option1"
-              [(ngModel)]="quiz.optionDto[0].answer"
+              [(ngModel)]="quiz.options[0].answer"
               required
             />
           </div>
         </div>
         <div class="col-md-2">
-          <input [(ngModel)]="quiz.optionDto[0].isCorrect" type="checkbox" name="op1">
+          <input [(ngModel)]="quiz.options[0].isCorrect" type="checkbox" name="op1">
         </div>
       </div>
       <div class="row">
@@ -101,12 +101,12 @@
               id="option2"
               name="option2"
               required
-              [(ngModel)]="quiz.optionDto[1].answer"
+              [(ngModel)]="quiz.options[1].answer"
             />
           </div>
         </div>
         <div class="col-md-2">
-          <input [(ngModel)]="quiz.optionDto[1].isCorrect" type="checkbox" name="op2">
+          <input [(ngModel)]="quiz.options[1].isCorrect" type="checkbox" name="op2">
         </div>
       </div>
       <div class="row">
@@ -121,12 +121,12 @@
               id="option3"
               name="option3"
               required
-              [(ngModel)]="quiz.optionDto[2].answer"
+              [(ngModel)]="quiz.options[2].answer"
             />
           </div>
         </div>
         <div class="col-md-2">
-          <input [(ngModel)]="quiz.optionDto[2].isCorrect" type="checkbox" name="op3">
+          <input [(ngModel)]="quiz.options[2].isCorrect" type="checkbox" name="op3">
         </div>
       </div>
       <div class="row">
@@ -141,12 +141,12 @@
               id="option4"
               name="optionD"
               required
-              [(ngModel)]="quiz.optionDto[3].answer"
+              [(ngModel)]="quiz.options[3].answer"
             />
           </div>
         </div>
         <div class="col-md-2">
-          <input [(ngModel)]="quiz.optionDto[3].isCorrect" type="checkbox" name="op4">
+          <input [(ngModel)]="quiz.options[3].isCorrect" type="checkbox" name="op4">
         </div>
       </div>
       

@@ -52,7 +52,9 @@ namespace PlayMath.API.Helpers
 
 
             // Quiz
-            CreateMap<QuizDto, QuizQuestion>();
+            CreateMap<QuizDto, QuizQuestion>()
+                .ForMember(dest => dest.Question, opt => 
+                    opt.MapFrom(src => src.Question));
             CreateMap<QuizDto, Option>();
                 
         }

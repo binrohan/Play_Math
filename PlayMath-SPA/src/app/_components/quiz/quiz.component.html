@@ -1,3 +1,41 @@
-<p>
-  quiz works!
-</p>
+<div class="component container">
+  <div *ngIf="open">
+    <h2>Read for the Test</h2>
+    <p>5 Questions, Select the correct answer</p>
+    <button
+      class="btn btn-primary"
+      (click)="nextQuiz(); started = true; open = false"
+    >
+      Start
+    </button>
+  </div>
+  <div *ngIf="retry">
+    <p class="h1 font-weight-light">
+      You correctly answered {{ correctAnswerCount }} out of 5
+    </p>
+    <button class="btn btn-primary" (click)="nextQuiz(); retry = false">
+      Restart
+    </button>
+  </div>
+  <div *ngIf="started">
+    <h2>Question {{ index }}/ 5</h2>
+    <p class="font-weight-bold">Q: {{ quiz.question }}</p>
+    <form #answerForm="ngForm">
+      <div *ngFor="let o of quiz.options; let i = index" class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="radio" name="option" (click)="seletedOption = i" />
+          </div>
+        </div>
+        <input
+          type="text"
+          class="form-control"
+          readonly
+          value="{{ o.answer }}"
+        />
+      </div>
+      <button class="btn btn-primary" (click)="nextQuiz()">Next</button>
+    </form>
+  </div>
+  <div></div>
+</div>

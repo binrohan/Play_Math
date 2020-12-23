@@ -34,6 +34,7 @@ namespace PlayMath.API.Data
 
          // Quiz
          Task<QuizQuestion> GetQuizQuestionAsync(int id);
+         Task<IEnumerable<QuizQuestion>> GetQuizQuestionsAsync();
 
     }
 }

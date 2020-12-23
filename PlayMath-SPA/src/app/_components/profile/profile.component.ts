@@ -40,16 +40,21 @@ export class ProfileComponent implements OnInit {
     pageIndex: 0,
     pageSize: 5,
     filter: '',
-    categoryBy: 0
+    categoryBy: 0,
   };
 
   newCateName: string;
   categories: Category[];
 
   quiz = {
-    questionDto: '',
-    optionDto: [{answer: '', isCorrect: false}, {answer: '', isCorrect: false}, {answer: '', isCorrect: false}, {answer: '', isCorrect: false}]
-  }
+    question: '',
+    options: [
+      { answer: '', isCorrect: false },
+      { answer: '', isCorrect: false },
+      { answer: '', isCorrect: false },
+      { answer: '', isCorrect: false },
+    ],
+  };
 
   constructor(
     private authService: AuthService,
@@ -61,7 +66,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if(!this.loggedIn()){
+    if (!this.loggedIn()) {
       this.router.navigate(['/login']);
       return false;
     }
@@ -130,7 +135,7 @@ export class ProfileComponent implements OnInit {
   }
 
   pageCalc(length: number, name: string) {
-    if(name === 'u'){
+    if (name === 'u') {
       this.totalPage = Array(Math.ceil(length / this.params.pageSize))
         .fill(1)
         .map((x, i) => i);
@@ -171,41 +176,60 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  updateUser(){
-    this.userService.updateUser(this.userId, {userName: this.user.userName, id: this.userId, email: this.user.email}).subscribe((data) => {
-      this.user = data;
-    }, (error) => {
-      console.log('Error updating user');
-    });
+  updateUser() {
+    this.userService
+      .updateUser(this.userId, {
+        userName: this.user.userName,
+        id: this.userId,
+        email: this.user.email,
+      })
+      .subscribe(
+        (data) => {
+          this.user = data;
+        },
+        (error) => {
+          console.log('Error updating user');
+        }
+      );
   }
 
-  deleteUser(){
-    this.userService.deleteUser(this.userId, this.authService.decodedToken.nameid).subscribe(() => {
-      console.log('User Removed');
-    }, (error) => {
-      console.log('User Removed Failed');
-    });
+  deleteUser() {
+    this.userService
+      .deleteUser(this.userId, this.authService.decodedToken.nameid)
+      .subscribe(
+        () => {
+          console.log('User Removed');
+        },
+        (error) => {
+          console.log('User Removed Failed');
+        }
+      );
   }
 
-  removeCate(id: number){
-    this.articleService.removeCate(id).subscribe(()=>{
-      console.log('Removed');
-      this.getCategories();
-    }, (error) => {
-      console.log('Removed failed');
-    })
+  removeCate(id: number) {
+    this.articleService.removeCate(id).subscribe(
+      () => {
+        console.log('Removed');
+        this.getCategories();
+      },
+      (error) => {
+        console.log('Removed failed');
+      }
+    );
   }
 
-  addCate(){
-    if(this.newCateName === undefined || this.newCateName === '')
-      return false;
+  addCate() {
+    if (this.newCateName === undefined || this.newCateName === '') return false;
 
-    this.articleService.addCate({category: this.newCateName}).subscribe(() => {
-      console.log('Category Added');
-      this.getCategories();
-    }, (error)=> {
-      console.log('Category add failed');
-    })
+    this.articleService.addCate({ category: this.newCateName }).subscribe(
+      () => {
+        console.log('Category Added');
+        this.getCategories();
+      },
+      (error) => {
+        console.log('Category add failed');
+      }
+    );
   }
 
   getCategories() {
@@ -219,13 +243,24 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-
-  addQuiz(){
+  addQuiz() {
     console.log(this.quiz);
-    this.quizService.addQuiz(this.quiz).subscribe(() => {
-      console.log('Question added to the database');
-    }, (error) => {
-      console.log('Question failed to add');
-    })
+    this.quizService.addQuiz(this.quiz).subscribe(
+      () => {
+        console.log('Question added to the database');
+        this.quiz = {
+          question: '',
+          options: [
+            { answer: '', isCorrect: false },
+            { answer: '', isCorrect: false },
+            { answer: '', isCorrect: false },
+            { answer: '', isCorrect: false },
+          ],
+        };
+      },
+      (error) => {
+        console.log('Question failed to add');
+      }
+    );
   }
 }

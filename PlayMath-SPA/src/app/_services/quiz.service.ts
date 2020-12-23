@@ -13,4 +13,12 @@ export class QuizService {
   addQuiz(model: {}){
     return this.http.post(this.baseUrl, model);
   }
+
+  requestQuiz(){
+    return this.http.get<any>(this.baseUrl);
+  }
+
+  getQuiz(id: number){
+    return this.http.get(this.baseUrl + 'quiz/' + id);
+  }
 }

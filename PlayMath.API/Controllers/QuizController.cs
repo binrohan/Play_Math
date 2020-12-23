@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -22,7 +23,8 @@ namespace PlayMath.API.Controllers {
         [HttpPost]
         public async Task<IActionResult> AddQuiz(QuizDto quiz)
         {
-            var questionToAdd = _mapper.Map<QuizQuestion>(quiz);
+            var questionToAdd = new QuizQuestion();
+            questionToAdd.Question = quiz.Question;
 
             _repo.Add(questionToAdd);
 
@@ -30,20 +32,43 @@ namespace PlayMath.API.Controllers {
             {   
                 foreach (var option in quiz.Options)
                 {
-                    var optionToAdd = _mapper.Map<Option>(option);
+                    var optionToAdd = new Option();
+                    optionToAdd.Answer = option.Answer;
+                    optionToAdd.IsCorrect = option.isCorrect;
+                    
                     optionToAdd.Question = await _repo.GetQuizQuestionAsync(questionToAdd.Id);
 
                     _repo.Add(optionToAdd);
                     await _repo.SaveAll();
                 }
 
-                return Ok();
+                return Ok(quiz);
             }
 
+            throw new Exception("Question failed to add");
+        }
 
-            
+        [HttpGet]
+        public async Task<IActionResult> RequestQuiz()
+        {
+            var quizQuestions = await _repo.GetQuizQuestionsAsync();
 
-            return Ok(new {questionToAdd});
+            var quizQusetionsId = new List<int>();
+
+            foreach (var quiz in quizQuestions)
+            {
+                quizQusetionsId.Add(quiz.Id);
+            }
+
+            return Ok(quizQusetionsId);
+        }
+
+        [HttpGet("quiz/{id}")]
+        public async Task<IActionResult> GetQuiz(int id)
+        {
+            var quiz = await _repo.GetQuizQuestionAsync(id);
+
+            return Ok(quiz);
         }
 
     }

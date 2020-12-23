@@ -8,8 +8,8 @@ namespace PlayMath.API.Dtos
         {   
             Options = new List<OptionDto>();
         }
-        public QuestionDto Question { get; set; }
-        public ICollection<OptionDto> Options { get; set; }
+        public string Question { get; set; }
+        public IList<OptionDto> Options { get; set; }
     }
 
     public class OptionDto
@@ -21,6 +21,11 @@ namespace PlayMath.API.Dtos
     public class QuestionDto
     {
         public string Question { get; set; }
+    }
+
+    public class QuizQusetionsIdDto
+    {
+        ICollection<int> QuizIds;
     }
 }
 

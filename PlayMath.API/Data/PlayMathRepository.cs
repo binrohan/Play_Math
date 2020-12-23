@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -158,7 +159,14 @@ namespace PlayMath.API.Data
         // Quiz
         public async Task<QuizQuestion> GetQuizQuestionAsync(int id)
         {
-            return await _context.QuizQuestions.FirstOrDefaultAsync(q => q.Id == id);
+            return await _context.QuizQuestions.Include(q => q.Options).FirstOrDefaultAsync(q => q.Id == id);
+    }
+
+        public async Task<IEnumerable<QuizQuestion>> GetQuizQuestionsAsync()
+        {
+            return await _context.QuizQuestions.OrderBy(q => Guid.NewGuid()).Take(5).ToListAsync();
         }
+
+        
     }
 }
