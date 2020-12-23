@@ -7,6 +7,8 @@ import { ArticleComponent } from './_components/article/article.component';
 import { ArticlesComponent } from './_components/articles/articles.component';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/login/login.component';
+import { ABComponent } from './_components/maths/a-b/a-b.component';
+import { CubeComponent } from './_components/maths/cube/cube.component';
 import { MathsComponent } from './_components/maths/maths.component';
 import { MeanComponent } from './_components/maths/mean/mean.component';
 import { MedianComponent } from './_components/maths/median/median.component';
@@ -39,6 +41,8 @@ const routes: Routes = [
       { path: 'maths/trinomial', component: TrinomialComponent },
       { path: 'maths/quadratic', component: QuadraticComponent },
       { path: 'maths/square', component: SquareComponent },
+      { path: 'maths/cube', component: CubeComponent },
+      { path: 'maths/ab', component: ABComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'questions', component: QuestionsComponent },
       { path: 'question/new', component: QuestionFormComponent, data: { roles: ['Admin', 'Reader', 'Writer'] } },

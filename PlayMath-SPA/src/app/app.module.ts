@@ -47,6 +47,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './_components/user/user.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { HasRoleDirective } from './_directives/hasRole.directive';
+import { CubeComponent } from './_components/maths/cube/cube.component';
+import { ABComponent } from './_components/maths/a-b/a-b.component';
 
 // Materials
 // import {MatListModule} from '@angular/material/list';
@@ -82,6 +84,8 @@ export function tokenGetter() {
     UserComponent,
     HasRoleDirective,
     SquareComponent,
+    CubeComponent,
+    ABComponent
     // Material
     // MatListModule,
     // MatSelectModule

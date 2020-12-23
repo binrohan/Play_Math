@@ -22,6 +22,14 @@ export class MathService {
     return this.http.post(this.baseUrl + 'algebra/' + 'square', model);
   }
 
+  getCube(model: {}): any {
+    return this.http.post(this.baseUrl + 'algebra/' + 'Cube', model);
+  }
+
+  getAMinusB(model: {}): any {
+    return this.http.post(this.baseUrl + 'algebra/' + 'ab', model);
+  }
+
   getMode(model: {}): any {
     return this.http.post(this.baseUrl + 'preAlgebra/' + 'mode', model);
   }
