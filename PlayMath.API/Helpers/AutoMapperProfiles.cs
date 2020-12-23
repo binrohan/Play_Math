@@ -37,7 +37,9 @@ namespace PlayMath.API.Helpers
                 .ForMember(dest => dest.Questioner, opt => 
                     opt.MapFrom(src => src.QuestionBy.UserName))
                 .ForMember(dest => dest.CategoryName, opt =>
-                    opt.MapFrom(src => src.Category.Category));
+                    opt.MapFrom(src => src.Category.Category))
+                .ForMember(dest => dest.AnswerCount, opt =>
+                    opt.MapFrom(src => src.Answers.Count));
             CreateMap<QuestionToUpdateDto, Question>();
 
 

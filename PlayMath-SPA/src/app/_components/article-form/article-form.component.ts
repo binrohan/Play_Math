@@ -16,6 +16,7 @@ export class ArticleFormComponent implements OnInit {
   categories: Category[];
   article: Article;
   bodyText: string;
+  newArticle: any = {};
 
   constructor(
     private fb: FormBuilder,
@@ -50,8 +51,10 @@ export class ArticleFormComponent implements OnInit {
       this.article.writerId = this.authService.decodedToken.nameid;
 
       this.articleService.addArticle(this.article).subscribe(
-        () => {
+        (data) => {
           console.log('Article added successfully');
+          this.newArticle = data;
+          this.router.navigate(['article/' + this.newArticle.id]);
         },
         (error) => {
           console.log('Article added failed');

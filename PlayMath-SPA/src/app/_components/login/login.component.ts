@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
         console.log('Logged in successfully');
       }, (error) => {
         console.log('Failed to Login');
+        alert('Incorrect Email or Password');
       }, () => {
         this.router.navigate(['']);
       }

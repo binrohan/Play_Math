@@ -13,7 +13,7 @@ namespace PlayMath.API.Dtos
         public DateTime Published { get; set; }
         public string WriterName { get; set; }
         public bool IsApproved { get; set; }
-        public ICollection<string> Category { get; set; }
+        public string Category { get; set; }
 
     }
 }

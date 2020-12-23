@@ -114,6 +114,7 @@ namespace PlayMath.API.Data
                             .Where(a => a.IsDeleted == false)
                             .Include(a => a.Category)
                             .Include(q => q.QuestionBy)
+                            .Include(q => q.Answers)
                             .AsQueryable();
             
             questions = TQuery.QuestionQuery(questionParams, questions);

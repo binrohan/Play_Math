@@ -16,6 +16,8 @@ namespace PlayMath.API.Dtos
         public string CategoryName { get; set; }
         public string Questioner { get; set; }
 
+        public int AnswerCount { get; set; }
+
         public ArticleCategory Category { get; set; }
     }
 }

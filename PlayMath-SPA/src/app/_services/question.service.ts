@@ -36,4 +36,8 @@ export class QuestionService {
   updateQuestion(question: {}, id: number){
     return this.http.put<Question>(this.baseUrl + '/' + id, question);
   }
+
+  viewQuestion(id: number){
+    return this.http.put<Question>(this.baseUrl + '/view/' + id, {});
+  }
 }

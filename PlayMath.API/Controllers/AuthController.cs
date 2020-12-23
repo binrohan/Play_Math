@@ -47,6 +47,12 @@ namespace PlayMath.API.Controllers
 
             if (result.Succeeded)
             {
+                string[] role = {"Reader"};
+                var resultRole = await _userManager.AddToRolesAsync (userToCreate, role);
+                 if (!result.Succeeded)
+                 {
+                      return BadRequest("Failed inner side");
+                 }
                 return Ok();
             }
 

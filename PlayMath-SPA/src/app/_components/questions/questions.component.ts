@@ -9,10 +9,9 @@ import { QuestionService } from 'src/app/_services/question.service';
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
-  styleUrls: ['./questions.component.scss']
+  styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-
   categories: Category[];
   questions: Question[];
 
@@ -24,12 +23,17 @@ export class QuestionsComponent implements OnInit {
     pageSize: 5,
     filter: '',
     categoryBy: 0,
-    byUserId: ''
+    byUserId: '',
   };
 
   filter = '';
 
-  constructor(private articleService: ArticleService, private questionService: QuestionService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private articleService: ArticleService,
+    private questionService: QuestionService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.getCategories();
@@ -64,18 +68,18 @@ export class QuestionsComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  onCategoryChange(category: Category){
+  onCategoryChange(category: Category) {
     this.activeCate = category.id;
     this.params.categoryBy = category.id;
     this.getQuestions();
   }
 
-  onPageChange(index){
+  onPageChange(index) {
     this.params.pageIndex = index;
     this.getQuestions();
   }
 
-  goToQuestion(id){
+  goToQuestion(id) {
     this.router.navigate(['/question/' + id]);
   }
 
@@ -85,9 +89,8 @@ export class QuestionsComponent implements OnInit {
       .map((x, i) => i);
   }
 
-  onSearch(){
+  onSearch() {
     this.params.filter = this.filter;
     this.getQuestions();
   }
-
 }

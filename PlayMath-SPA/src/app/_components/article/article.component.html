@@ -3,7 +3,7 @@
   <p class="lead">by {{ article?.writerName }}</p>
   <hr />
   <p>
-    Posted on {{ article?.published | date:'dd MMM yyyy' }} at {{ article?.published | date: 'h:mm a' }}
+    Posted on {{ article?.published | date:'dd MMM yyyy' }}
   </p>
   <hr />
   <div class="lead text-justify">{{ article?.subTitle }}</div>
@@ -16,7 +16,7 @@
 
 
   <div class="my-2">
-    <p class="badge badge-primary">{{ article.category[0] }}</p>
+    <h5 class="badge badge-primary">{{ article.category }}</h5>
   </div>
 
 

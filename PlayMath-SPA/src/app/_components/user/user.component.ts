@@ -47,6 +47,7 @@ export class UserComponent implements OnInit {
     this.userService.updateUserRole(this.user.id, newRoleSet).subscribe(
       () => {
         this.getUser(this.route.snapshot.paramMap.get('id'));
+        alert('User Role Updated');
       },
       (err) => {}
     );

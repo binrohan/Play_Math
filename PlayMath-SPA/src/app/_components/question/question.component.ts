@@ -33,6 +33,7 @@ export class QuestionComponent implements OnInit {
     pageSize: 5,
     filter: '',
     categoryBy: 0,
+    byUserId: ''
   };
 
   totalPage = [];
@@ -115,7 +116,7 @@ export class QuestionComponent implements OnInit {
       this.answers = data.answers;
       this.answerCount = data.length;
       this.pageCalc(data.length);
-      console.log(this.answers);
+      this.veiwQuestion();
     }, (error) => {
       console.log('Failed to load answers');
     });
@@ -125,5 +126,11 @@ export class QuestionComponent implements OnInit {
     this.totalPage = Array(Math.ceil(length / this.params.pageSize))
       .fill(1)
       .map((x, i) => i);
+  }
+
+  veiwQuestion(){
+    this.questionService.viewQuestion(this.questionId).subscribe((data) => {
+      this.question = data;
+    });
   }
 }

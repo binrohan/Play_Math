@@ -309,7 +309,7 @@
       <tbody>
         <tr *ngFor="let u of articles">
           <td>{{ u.title }}</td>
-          <td>{{ u.body | summary: 10 }}</td>
+          <td>{{ u.body | summary: 50 }}</td>
           <td >{{ u.published | date:'dd MMMM yyyy' }}</td>
           <td><a class="cursor" [routerLink]="['/article/'+u.id ]">read</a></td>
         </tr>

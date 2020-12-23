@@ -11,4 +11,5 @@ export interface Question {
     viewed: number;
     isSolved: boolean;
     category: Category;
+    answerCount: number;
 }

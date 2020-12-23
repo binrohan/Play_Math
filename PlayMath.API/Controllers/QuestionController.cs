@@ -108,5 +108,20 @@ namespace PlayMath.API.Controllers {
 
             throw new Exception("Question failed to update");
         }
+
+        [HttpPut("view/{id}")]
+        public async Task<IActionResult> ViewQuestion(int id)
+        {
+            var question = await _repo.GetQuestionAsync(id);
+
+            question.Viewed ++;
+
+            if(await _repo.SaveAll())
+            {
+                return Ok(question);
+            }
+
+            throw new Exception("Question failed to update");
+        }
     }
 }
