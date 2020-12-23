@@ -1,7 +1,7 @@
 <div class="component container">
-  <h2>Trinomial Equation</h2>
+  <h2>Square Formula</h2>
   <p>Equation Format</p>
-  <p>ax<sup>2</sup> + bx + c</p>
+  <p>(ax + by)<sup>2</sup></p>
   <div>
     <form class="form-inline">
       <div class="input-group mb-2 mr-sm-2">
@@ -16,7 +16,7 @@
           [(ngModel)]="model.a"
         />
       </div>
-      <span class="mx-2">x<sup>2</sup> +</span>
+      <span class="mx-2">x +</span>
      
       <div class="input-group mb-2 mr-sm-2">
         <div class="input-group-prepend">
@@ -30,33 +30,20 @@
           [(ngModel)]="model.b"
         />
       </div>
-      <span class="mx-2"> x +</span>
-
-      <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">c = </div>
-        </div>
-        <input
-          type="number"
-          class="form-control"
-          id="inlineFormInputGroupUsername2"
-          name="c"
-          [(ngModel)]="model.c"
-        />
-      </div>
+      <span class="mx-2">y</span>
 
       <button type="submit" (click)="solve()" class="btn btn-primary mb-2">Solve</button>
     </form>
   </div>
   <hr>
   <div>
-    <p *ngIf="isSolveClicked">
+    <!-- <p *ngIf="isSolveClicked">
       Your equation is :
       <span class="equation">
         {{ model.a }}x<sup>2</sup> <span *ngIf="model.b > 0">+</span>
         {{ model.b }}x <span *ngIf="model.b > 0">+</span>{{ model.c }}</span
       > 
-    </p>
+    </p> -->
     <section class="solved" *ngIf="isSolveClicked && success">
       <p class="solved__line" *ngFor="let s of solved">{{s.solutionLine}}</p>
     </section>
@@ -65,3 +52,4 @@
     </section>
   </div>
 </div>
+

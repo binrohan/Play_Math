@@ -36,5 +36,14 @@ namespace PlayMath.API.Controllers
 
             return (solution);
         }
+
+        [HttpPost("square")]
+        public List<TrinomialSolutionDto> Square(Square square)
+        {
+
+            var solution = _algebra.Square(square.A, square.B);
+
+            return (solution);
+        }
     }
 }

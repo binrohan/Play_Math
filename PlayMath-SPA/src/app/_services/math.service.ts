@@ -18,6 +18,10 @@ export class MathService {
     return this.http.post(this.baseUrl + 'algebra/' + 'quadratic', model);
   }
 
+  getSquare(model: {}): any {
+    return this.http.post(this.baseUrl + 'algebra/' + 'square', model);
+  }
+
   getMode(model: {}): any {
     return this.http.post(this.baseUrl + 'preAlgebra/' + 'mode', model);
   }

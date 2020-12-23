@@ -36,6 +36,7 @@ import { ModeComponent } from './_components/maths/mode/mode.component';
 import { MedianComponent } from './_components/maths/median/median.component';
 import { QuadraticComponent } from './_components/maths/quadratic/quadratic.component';
 import { TrinomialComponent } from './_components/maths/trinomial/trinomial.component';
+import { SquareComponent } from './_components/maths/square/square.component';
 
 // Pipes
 import { SummaryPipe } from './_pipes/summary.pipe';
@@ -79,7 +80,8 @@ export function tokenGetter() {
     QuadraticComponent,
     TrinomialComponent,
     UserComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    SquareComponent,
     // Material
     // MatListModule,
     // MatSelectModule

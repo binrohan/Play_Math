@@ -12,6 +12,7 @@ import { MeanComponent } from './_components/maths/mean/mean.component';
 import { MedianComponent } from './_components/maths/median/median.component';
 import { ModeComponent } from './_components/maths/mode/mode.component';
 import { QuadraticComponent } from './_components/maths/quadratic/quadratic.component';
+import { SquareComponent } from './_components/maths/square/square.component';
 import { TrinomialComponent } from './_components/maths/trinomial/trinomial.component';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { QuestionFormComponent } from './_components/question-form/question-form.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'maths/median', component: MedianComponent },
       { path: 'maths/trinomial', component: TrinomialComponent },
       { path: 'maths/quadratic', component: QuadraticComponent },
+      { path: 'maths/square', component: SquareComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'questions', component: QuestionsComponent },
       { path: 'question/new', component: QuestionFormComponent, data: { roles: ['Admin', 'Reader', 'Writer'] } },

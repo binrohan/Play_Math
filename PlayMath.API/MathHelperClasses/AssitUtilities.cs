@@ -49,7 +49,7 @@ namespace PlayMath.API.MathHelperClasses
             else if (isFirstNumber == true && number == 1 && isConstant == true)
                 return "" + number;
             else if (isFirstNumber == false && number == 1 && isConstant == false)
-                return "+" + number;
+                return "+";
             else if (isFirstNumber == false && number == 1 && isConstant == true)
                 return "+" + number;
             else if (isFirstNumber == false && number == -1 && isConstant == true)

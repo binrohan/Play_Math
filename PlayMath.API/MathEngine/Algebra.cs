@@ -215,5 +215,42 @@ namespace PlayMath.API.MathEngine
 
             return solution;      
         }
+
+        public List<TrinomialSolutionDto> Square(int a = 1, int b = 1)
+        {
+             List<TrinomialSolutionDto> solution =  new List<TrinomialSolutionDto>();
+
+             solution.Add(new TrinomialSolutionDto()
+             {
+                 SolutionLine = ("(" + AssitUtilities.PlusAndKill(true, false, a) + "x " + AssitUtilities.PlusAndKill(false, false, b) + "y)²").ToString(),
+                Description = "Square Line first"
+             });
+
+             solution.Add(new TrinomialSolutionDto() {
+                 SolutionLine = AssitUtilities.PlusAndKill(true, true, a)+"²x² " + " +2("+AssitUtilities.PlusAndKill(true, false, a)+"x)("+AssitUtilities.PlusAndKill(true, false, b)+"y) " + AssitUtilities.PlusAndKill(false, true, b)+"²y²".ToString(),
+                 Description = "Formula Applied"
+             });
+
+             int c = 2*a*b;
+             a *= a;
+             b *= b;
+             
+
+             solution.Add(new TrinomialSolutionDto() {
+                 SolutionLine = AssitUtilities.PlusAndKill(true, false, a)+"x²" + AssitUtilities.PlusAndKill(false, false, c)+"xy " + AssitUtilities.PlusAndKill(false, false, b)+"y²".ToString(),
+                 Description = "Formula Applied"
+             });
+
+             int gcd = MathUtilities.GCD(new int[] {a, b, c});
+
+            if(gcd != 1){
+                solution.Add(new TrinomialSolutionDto() {
+                 SolutionLine = gcd+"( "+AssitUtilities.PlusAndKill(true, false, a/gcd)+"x²" + AssitUtilities.PlusAndKill(false, false, c/gcd)+"xy " + AssitUtilities.PlusAndKill(false, false, b/gcd)+"y²)".ToString(),
+                 Description = "Formula Applied"
+             });
+            }
+
+             return solution;
+        }
     }
 }
