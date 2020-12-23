@@ -45,5 +45,23 @@ namespace PlayMath.API.Controllers
 
             return (solution);
         }
+
+        [HttpPost("cube")]
+        public List<TrinomialSolutionDto> Cube(Square square)
+        {
+
+            var solution = _algebra.Cube(square.A, square.B);
+
+            return (solution);
+        }
+
+        [HttpPost("ab")]
+        public List<TrinomialSolutionDto> AMinusB(Square square)
+        {
+
+            var solution = _algebra.AMinusB(square.A, square.B);
+
+            return (solution);
+        }
     }
 }

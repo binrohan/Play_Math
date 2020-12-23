@@ -23,7 +23,7 @@ export class MathService {
   }
 
   getCube(model: {}): any {
-    return this.http.post(this.baseUrl + 'algebra/' + 'Cube', model);
+    return this.http.post(this.baseUrl + 'algebra/' + 'cube', model);
   }
 
   getAMinusB(model: {}): any {

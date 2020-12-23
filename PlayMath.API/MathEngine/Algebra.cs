@@ -252,5 +252,19 @@ namespace PlayMath.API.MathEngine
 
              return solution;
         }
+
+        public List<TrinomialSolutionDto> Cube(int a = 1, int b = 1)
+        {
+            List<TrinomialSolutionDto> solution =  new List<TrinomialSolutionDto>();
+
+            return solution;
+        }
+
+        public List<TrinomialSolutionDto> AMinusB(int a = 1, int b = 1)
+        {
+            List<TrinomialSolutionDto> solution =  new List<TrinomialSolutionDto>();
+
+            return solution;
+        }
     }
 }
